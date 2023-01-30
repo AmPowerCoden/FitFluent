@@ -1,6 +1,7 @@
 package com.example.fitfluent.ui.login
 
 import android.app.Activity
+import android.content.Intent
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
@@ -12,9 +13,14 @@ import android.view.View
 import android.view.inputmethod.EditorInfo
 import android.widget.EditText
 import android.widget.Toast
+import androidx.core.content.ContextCompat.startActivity
+import com.example.fitfluent.MainActivity
 import com.example.fitfluent.databinding.ActivityLoginBinding
 
 import com.example.fitfluent.R
+import com.example.fitfluent.Register_Activity
+import com.example.fitfluent.data.DatabaseReader
+import com.example.fitfluent.data.User
 
 class LoginActivity : AppCompatActivity() {
 
@@ -31,6 +37,14 @@ class LoginActivity : AppCompatActivity() {
         val password = binding.password
         val login = binding.login
         val loading = binding.loading
+        val register = binding.register
+        val dbReader = DatabaseReader(this)
+
+        if (register != null) {
+            register.isEnabled = true
+        }
+
+        dbReader.onCreate(dbReader.writableDatabase)
 
         loginViewModel = ViewModelProvider(this, LoginViewModelFactory())
             .get(LoginViewModel::class.java)
@@ -85,7 +99,8 @@ class LoginActivity : AppCompatActivity() {
                     EditorInfo.IME_ACTION_DONE ->
                         loginViewModel.login(
                             username.text.toString(),
-                            password.text.toString()
+                            password.text.toString(),
+                            dbReader
                         )
                 }
                 false
@@ -93,9 +108,23 @@ class LoginActivity : AppCompatActivity() {
 
             login.setOnClickListener {
                 loading.visibility = View.VISIBLE
-                loginViewModel.login(username.text.toString(), password.text.toString())
+                val logged_user = loginViewModel.login(username.text.toString(), password.text.toString(), dbReader)
+                if (logged_user.username != ""){
+                    val intent = Intent(this@LoginActivity, MainActivity::class.java)
+                    intent.putExtra("logged_user", logged_user)
+                    startActivity(intent)
+                }
             }
         }
+
+        if (register != null) {
+            register.setOnClickListener {
+                val intent = Intent(this, Register_Activity::class.java)
+                startActivity(intent)
+            }
+        }
+
+
     }
 
     private fun updateUiWithUser(model: LoggedInUserView) {

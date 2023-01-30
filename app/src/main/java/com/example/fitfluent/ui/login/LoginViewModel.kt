@@ -4,10 +4,14 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import android.util.Patterns
+import androidx.core.content.ContentProviderCompat.requireContext
 import com.example.fitfluent.data.LoginRepository
 import com.example.fitfluent.data.Result
 
 import com.example.fitfluent.R
+import com.example.fitfluent.data.DatabaseReader
+import com.example.fitfluent.data.User
+import java.security.AccessController.getContext
 
 class LoginViewModel(private val loginRepository: LoginRepository) : ViewModel() {
 
@@ -17,16 +21,19 @@ class LoginViewModel(private val loginRepository: LoginRepository) : ViewModel()
     private val _loginResult = MutableLiveData<LoginResult>()
     val loginResult: LiveData<LoginResult> = _loginResult
 
-    fun login(username: String, password: String) {
+    fun login(username: String, password: String, dbReader: DatabaseReader) : User {
         // can be launched in a separate asynchronous job
-        val result = loginRepository.login(username, password)
+        print("test")
+        val result = loginRepository.login(username, password, dbReader)
 
-        if (result is Result.Success) {
+        if (result.username != "") {
             _loginResult.value =
-                LoginResult(success = LoggedInUserView(displayName = result.data.displayName))
+                LoginResult(success = LoggedInUserView(displayName = result.username))
         } else {
             _loginResult.value = LoginResult(error = R.string.login_failed)
         }
+
+        return result
     }
 
     fun loginDataChanged(username: String, password: String) {

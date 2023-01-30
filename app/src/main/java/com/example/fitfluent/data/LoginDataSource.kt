@@ -1,20 +1,22 @@
 package com.example.fitfluent.data
 
 import com.example.fitfluent.data.model.LoggedInUser
-import java.io.IOException
 
 /**
  * Class that handles authentication w/ login credentials and retrieves user information.
  */
 class LoginDataSource {
 
-    fun login(username: String, password: String): Result<LoggedInUser> {
+    fun login(username: String, password: String, dbReader: DatabaseReader): User {
         try {
-            // TODO: handle loggedInUser authentication
             val fakeUser = LoggedInUser(java.util.UUID.randomUUID().toString(), "Jane Doe")
-            return Result.Success(fakeUser)
+            val logged_user = dbReader.getUser(username, password)
+            return logged_user
+
+
+
         } catch (e: Throwable) {
-            return Result.Error(IOException("Error logging in", e))
+            return User("", "", 0, 0, 0)
         }
     }
 
