@@ -21,10 +21,17 @@ class DatabaseReader(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME
     }
 
     override fun onCreate(p0: SQLiteDatabase?) {
-        if(!tableExists()){
+        if(!tableExists(p0)){
             val createTable = ("CREATE TABLE " + TABLE + "(" + USERNAME + " TEXT PRIMARY KEY, " + PASSWORD + " TEXT, " + AGE + " INTEGER, " + HEIGHT + " INTEGER, " + WEIGHT + " INTEGER)")
             p0?.execSQL(createTable)
-            register_person(User("Admin", "Admin1", 182, 70, 18))
+
+            val contentValues = ContentValues()
+            contentValues.put(USERNAME, "Admin")
+            contentValues.put(PASSWORD, "Admin")
+            contentValues.put(AGE, 18)
+            contentValues.put(HEIGHT, 187)
+            contentValues.put(WEIGHT, 78)
+            val success = p0?.insert(TABLE, null, contentValues)
         }
     }
 
@@ -34,7 +41,8 @@ class DatabaseReader(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME
     }
 
     fun register_person(user: User): Long {
-        val db = this.writableDatabase
+
+        val db = writableDatabase
 
         val contentValues = ContentValues()
         contentValues.put(USERNAME, user.username)
@@ -74,17 +82,17 @@ class DatabaseReader(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME
         return User(name, password, height, weight, age)
     }
 
-    fun tableExists() : Boolean{
+    fun tableExists(p0: SQLiteDatabase?) : Boolean{
         var result = false
         val sql = "select count(*) xcount from sqlite_master where type='table' and name='" + TABLE + "'"
         val cursor: Cursor?
-        val db = this.readableDatabase
-        cursor = db.rawQuery(sql, null)
-        cursor.moveToFirst()
-        if (cursor.getInt(0) > 0){
+        //val db = this.readableDatabase
+        cursor = p0?.rawQuery(sql, null)
+        cursor?.moveToFirst()
+        if (cursor?.getInt(0) != null && cursor.getInt(0) > 0){
             result = true
         }
-        cursor.close()
+        cursor?.close()
 
         return result
     }
