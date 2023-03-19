@@ -3,22 +3,22 @@
 
     <item
         android:id="@+id/bmiFragment"
-        android:icon="@drawable/ic_bmi_black_24dp"
+        android:icon="@drawable/standing_human_body_silhouette_svgrepo_com__3_"
         android:title="@string/title_bmi" />
 
     <item
         android:id="@+id/foodFragment"
-        android:icon="@drawable/ic_home_black_24dp"
+        android:icon="@drawable/food_restaurant_icon"
         android:title="@string/title_food" />
 
     <item
         android:id="@+id/exerciseFragment"
-        android:icon="@drawable/ic_dashboard_black_24dp"
+        android:icon="@drawable/list_round_bullet_outline_icon"
         android:title="@string/title_exercise" />
 
     <item
         android:id="@+id/workoutFragment"
-        android:icon="@drawable/ic_notifications_black_24dp"
+        android:icon="@drawable/dumbbell_svgrepo_com"
         android:title="@string/title_workout" />
 
 </menu>
