@@ -6,7 +6,6 @@ import android.os.Bundle
 import android.view.View
 import com.example.fitfluent.data.DatabaseReader
 import com.example.fitfluent.data.User
-import com.example.fitfluent.databinding.ActivityLoginBinding
 import com.example.fitfluent.databinding.ActivityRegisterBinding
 import com.example.fitfluent.ui.login.LoginActivity
 

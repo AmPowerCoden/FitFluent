@@ -3,26 +3,38 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/FirstFragment">
+    app:startDestination="@id/bmiFragment">
+
+    <activity
+        android:id="@+id/loginActivity"
+        android:name="com.example.fitfluent.ui.login.LoginActivity"
+        android:label="activity_login"
+        tools:layout="@layout/activity_login" />
+    <activity
+        android:id="@+id/register_Activity"
+        android:name="com.example.fitfluent.Register_Activity"
+        android:label="activity_register"
+        tools:layout="@layout/activity_register" />
 
     <fragment
-        android:id="@+id/FirstFragment"
-        android:name="com.example.fitfluent.FirstFragment"
-        android:label="@string/first_fragment_label"
-        tools:layout="@layout/fragment_first" >
-
-        <action
-            android:id="@+id/action_FirstFragment_to_SecondFragment"
-            app:destination="@id/SecondFragment" />
-    </fragment>
+        android:id="@+id/bmiFragment"
+        android:name="com.example.fitfluent.ui.bmi.BmiFragment"
+        android:label="fragment_bmi"
+        tools:layout="@layout/fragment_bmi" />
     <fragment
-        android:id="@+id/SecondFragment"
-        android:name="com.example.fitfluent.SecondFragment"
-        android:label="@string/second_fragment_label"
-        tools:layout="@layout/fragment_second" >
+        android:id="@+id/foodFragment"
+        android:name="com.example.fitfluent.ui.food.FoodFragment"
+        android:label="fragment_food"
+        tools:layout="@layout/fragment_food" />
+    <fragment
+        android:id="@+id/exerciseFragment"
+        android:name="com.example.fitfluent.ui.exercise.ExerciseFragment"
+        android:label="fragment_exercise"
+        tools:layout="@layout/fragment_exercise" />
+    <fragment
+        android:id="@+id/workoutFragment"
+        android:name="com.example.fitfluent.ui.workout.WorkoutFragment"
+        android:label="fragment_workout"
+        tools:layout="@layout/fragment_workout" />
 
-        <action
-            android:id="@+id/action_SecondFragment_to_FirstFragment"
-            app:destination="@id/FirstFragment" />
-    </fragment>
 </navigation>
