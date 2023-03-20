@@ -22,6 +22,6 @@
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
     <string name="title_bmi">BMI</string>
     <string name="title_food">Food</string>
-    <string name="title_exercise">Exercise</string>
+    <string name="title_exercise">Exercises</string>
     <string name="title_workout">Workout</string>
 </resources>
