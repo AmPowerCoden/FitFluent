@@ -3,8 +3,11 @@ package com.example.fitfluent.data
 data class User(
     val username: String,
     val password: String,
-    val height_in_cm: Int,
-    val weight_in_kg: Int,
-    val age: Int
+    var height_in_cm: Int,
+    var weight_in_kg: Int,
+    var age: Int,
+    var calorie_intake: Int,
+    var calorie_time: String,
+    var activity_level: Int
 ) : java.io.Serializable{
 }

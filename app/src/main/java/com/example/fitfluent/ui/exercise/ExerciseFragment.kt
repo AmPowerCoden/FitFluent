@@ -8,10 +8,10 @@ import android.view.View
 import android.view.ViewGroup
 import com.example.fitfluent.R
 
-class ExerciseFragment : Fragment() {
+class ExerciseFragment() : Fragment() {
 
     companion object {
-        fun newInstance() = ExerciseFragment()
+        fun newInstance(bundle: Bundle) = ExerciseFragment()
     }
 
     private lateinit var viewModel: ExerciseViewModel

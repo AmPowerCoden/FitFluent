@@ -8,10 +8,10 @@ import android.view.View
 import android.view.ViewGroup
 import com.example.fitfluent.R
 
-class BmiFragment : Fragment() {
+class BmiFragment() : Fragment() {
 
     companion object {
-        fun newInstance() = BmiFragment()
+        fun newInstance(bundle: Bundle) = BmiFragment()
     }
 
     private lateinit var viewModel: BmiViewModel

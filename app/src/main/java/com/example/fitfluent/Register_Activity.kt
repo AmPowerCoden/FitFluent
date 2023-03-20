@@ -23,6 +23,7 @@ class Register_Activity : AppCompatActivity() {
         val age = binding.ageRegister
         val height = binding.heightRegister
         val weight = binding.weightRegister
+        val activityLevel = binding.activityLevelRegister
         val dbReader = DatabaseReader(this)
         val register = binding.register
         val register_error = binding.registerError
@@ -35,7 +36,7 @@ class Register_Activity : AppCompatActivity() {
 
         register.setOnClickListener{
             try {
-                dbReader.register_person(User(username.text.toString(), password.text.toString(), height.text.toString().toInt(), weight.text.toString().toInt(), age.text.toString().toInt()))
+                dbReader.register_person(User(username.text.toString(), password.text.toString(), height.text.toString().toInt(), weight.text.toString().toInt(), age.text.toString().toInt(), 0, "", activityLevel.text.toString().toInt()))
                 val intent = Intent(this, LoginActivity::class.java)
                 startActivity(intent)
             }
