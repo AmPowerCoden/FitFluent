@@ -36,7 +36,7 @@ class Register_Activity : AppCompatActivity() {
 
         register.setOnClickListener{
             try {
-                dbReader.register_person(User(username.text.toString(), password.text.toString(), height.text.toString().toInt(), weight.text.toString().toInt(), age.text.toString().toInt(), 0, "", activityLevel.text.toString().toInt()))
+                dbReader.register_person(User(username.text.toString(), password.text.toString(), height.text.toString().toInt(), weight.text.toString().toInt(), age.text.toString().toInt(), 0.0, "", activityLevel.text.toString().toInt()))
                 val intent = Intent(this, LoginActivity::class.java)
                 startActivity(intent)
             }

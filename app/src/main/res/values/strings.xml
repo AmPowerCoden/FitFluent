@@ -24,4 +24,10 @@
     <string name="title_food">Food</string>
     <string name="title_exercise">Exercises</string>
     <string name="title_workout">Workout</string>
+
+    <!-- String used for the Food Fragment -->
+    <string name="search_for_food">Type the food you are going to eat</string>
+    <string name="grams_for_food">Type how many grams you are going to eat</string>
+    <string name="button_get_food">Get Food</string>
+    <string name="button_subtract_food">Subtract the Calories</string>
 </resources>

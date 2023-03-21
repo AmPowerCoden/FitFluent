@@ -16,7 +16,7 @@ class LoginDataSource {
 
 
         } catch (e: Throwable) {
-            return User("", "", 0, 0, 0, 0, "", 0)
+            return User("", "", 0, 0, 0, 0.0, "", 0)
         }
     }
 

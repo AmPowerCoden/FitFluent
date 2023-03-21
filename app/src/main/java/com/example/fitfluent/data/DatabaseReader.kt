@@ -76,7 +76,7 @@ class DatabaseReader(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME
         }
         catch (e: Exception)
         {
-            return User("", "", 0, 0, 0, 0, LocalDateTime.now().toString(), 0)
+            return User("", "", 0, 0, 0, 0.0, LocalDateTime.now().toString(), 0)
         }
 
         cursor.moveToFirst()
@@ -92,7 +92,7 @@ class DatabaseReader(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME
 
 
 
-        return User(name, password, height, weight, age, calorie_intake.toInt(), calorie_time, activityLevel)
+        return User(name, password, height, weight, age, calorie_intake.toDouble(), calorie_time, activityLevel)
     }
 
     fun tableExists(p0: SQLiteDatabase?) : Boolean{
