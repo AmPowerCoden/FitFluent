@@ -91,7 +91,7 @@ class FoodFragment: Fragment() {
         }
 
 
-        if (user.calorie_intake > (user.activity_level * 100) + usualCalories && headline.text == "")
+        if (user.calorie_intake > (user.activity_level * 100) + usualCalories)
         {
             headline.text = "Hallo ${user.username}! Sie haben für heute noch ${user.calorie_intake + user.activity_level * 100} von ${usualCalories + user.activity_level * 100} offen"
         } else {

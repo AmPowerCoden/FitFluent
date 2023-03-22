@@ -19,7 +19,7 @@
     <fragment
         android:id="@+id/bmiFragment"
         android:name="com.example.fitfluent.ui.bmi.BmiFragment"
-        android:label="fragment_bmi"
+        android:label="BMI Calculator"
         tools:layout="@layout/fragment_bmi" />
     <fragment
         android:id="@+id/foodFragment"

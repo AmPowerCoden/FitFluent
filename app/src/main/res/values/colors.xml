@@ -7,4 +7,12 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+
+
+    <!-- BMI Calculator -->
+
+    <color name="card_background">#11122A</color>
+    <color name="tint">#8D8E99</color>
+    <color name="colorAccent">#FF0000</color>
+    <color name="stepper">#1C1D34</color>
 </resources>
