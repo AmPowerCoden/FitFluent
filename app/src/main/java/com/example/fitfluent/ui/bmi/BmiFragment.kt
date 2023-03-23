@@ -8,6 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.SeekBar
+import androidx.navigation.fragment.findNavController
 import com.example.fitfluent.MainActivity
 import com.example.fitfluent.R
 import com.example.fitfluent.data.User
@@ -54,7 +55,7 @@ class BmiFragment() : Fragment() {
         binding.apply {
 
 
-/*
+
             cardViewMale.setOnClickListener {
                 if(chosen) {
                     maleTxt.setTextColor(Color.parseColor("#FFFFFF"))
@@ -86,7 +87,7 @@ class BmiFragment() : Fragment() {
                     chosen = true
                 }
             }
-*/
+
 
 
 
@@ -122,7 +123,20 @@ class BmiFragment() : Fragment() {
                 binding.age.text = logged_user.age--.toString()
             }
 
+
+
+            }
+
+        binding.calculate.setOnClickListener {
+
+
+            findNavController().navigate(R.id.action_bmiFragment_to_bmiResultFragment)
+
         }
+
+
+
+
 
 
 
@@ -137,7 +151,18 @@ class BmiFragment() : Fragment() {
         super.onActivityCreated(savedInstanceState)
         viewModel = ViewModelProvider(this).get(BmiViewModel::class.java)
         // TODO: Use the ViewModel
+
+
+
+
     }
+
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
+
 
 
 

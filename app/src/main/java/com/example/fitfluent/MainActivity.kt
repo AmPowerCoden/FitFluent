@@ -93,7 +93,7 @@ class MainActivity : AppCompatActivity() {
     fun lowerCalories(user: User, calories: Double){
         val dbReader = DatabaseReader(this)
 
-        var new_user = User(user.username, user.password, user.height_in_cm, user.weight_in_kg, user.age, user.calorie_intake - calories, user.calorie_time, user.activity_level)
+        var new_user = User(user.username, user.password, user.height_in_cm, user.weight_in_kg, user.age, user.calorie_intake - calories, user.calorie_time, user.activity_level, user.gender, user.bmi_score)
 
         dbReader.updateUser(user, new_user)
     }
@@ -101,7 +101,7 @@ class MainActivity : AppCompatActivity() {
     fun rearangeCalories(user:User){
         val dbReader = DatabaseReader(this)
 
-        var new_user = User(user.username, user.password, user.height_in_cm, user.weight_in_kg, user.age, (655.1 + (9.6 * user.weight_in_kg) + (1.8 * user.height_in_cm) - (4.7 * user.age)), user.calorie_time, user.activity_level)
+        var new_user = User(user.username, user.password, user.height_in_cm, user.weight_in_kg, user.age, (655.1 + (9.6 * user.weight_in_kg) + (1.8 * user.height_in_cm) - (4.7 * user.age)), user.calorie_time, user.activity_level, user.gender, user.bmi_score)
 
         dbReader.updateUser(user, new_user)
     }

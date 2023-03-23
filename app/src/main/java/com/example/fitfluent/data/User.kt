@@ -9,7 +9,7 @@ data class User(
     var calorie_intake: Double,
     var calorie_time: String,
     var activity_level: Int,
-    //var bmi_score: Float,
-    //var gender: String
+    var gender: String,
+    var bmi_score: Float
 ) : java.io.Serializable{
 }
