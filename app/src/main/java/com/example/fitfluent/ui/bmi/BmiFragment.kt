@@ -8,11 +8,15 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.SeekBar
+import androidx.core.os.bundleOf
+import androidx.fragment.app.activityViewModels
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.example.fitfluent.MainActivity
 import com.example.fitfluent.R
 import com.example.fitfluent.data.User
 import com.example.fitfluent.databinding.FragmentBmiBinding
+import kotlin.math.log
 
 class BmiFragment() : Fragment() {
 
@@ -21,9 +25,7 @@ class BmiFragment() : Fragment() {
     private lateinit var viewModel: BmiViewModel
 
     var height: Float? = null
-    //var logged_user = (activity as MainActivity).getLoggedUser()
     private var chosen: Boolean = true
-
 
 
 
@@ -32,14 +34,35 @@ class BmiFragment() : Fragment() {
     }
 
 
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-
         _binding = FragmentBmiBinding.inflate(inflater, container, false)
+        return binding.root
+    }
+
+
+
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
+        viewModel = ViewModelProvider(this).get(BmiViewModel::class.java)
+        // TODO: Use the ViewModel
+
+        var loged_user = (activity as MainActivity).getLoggedUser()
+
+        viewModel.getData(loged_user)
+
+
+    }
+
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+
         var logged_user = (activity as MainActivity).getLoggedUser()
+
 
 
 
@@ -47,9 +70,8 @@ class BmiFragment() : Fragment() {
         binding.Seekbar.progress = logged_user.height_in_cm
         binding.heightTxt.text = "${logged_user.height_in_cm.toString() + resources.getString(R.string.unit_cm)} "
         binding.weightTxt.text  = "${logged_user.weight_in_kg.toString() + resources.getString(R.string.unit_kg)} "
+
         binding.age.text  = "${logged_user.age.toString()}"
-
-
 
 
         binding.apply {
@@ -106,7 +128,7 @@ class BmiFragment() : Fragment() {
             })
 
 
-
+/*
             weightPlus.setOnClickListener {
                 binding.weightTxt.text = "${logged_user.weight_in_kg++.toString() + resources.getString(R.string.unit_kg)} "
             }
@@ -114,6 +136,15 @@ class BmiFragment() : Fragment() {
             weightMinus.setOnClickListener {
                 binding.weightTxt.text = "${logged_user.weight_in_kg--.toString() + resources.getString(R.string.unit_kg)} "
             }
+*/
+            weightPlus.setOnClickListener {
+                binding.weightTxt.text = "${viewModel._weight++.toString() + resources.getString(R.string.unit_kg)} "
+            }
+
+            weightMinus.setOnClickListener {
+                binding.weightTxt.text = "${viewModel._weight--.toString() + resources.getString(R.string.unit_kg)} "
+            }
+
 
             agePlus.setOnClickListener {
                 binding.age.text = logged_user.age++.toString()
@@ -125,40 +156,18 @@ class BmiFragment() : Fragment() {
 
 
 
-            }
-
-        binding.calculate.setOnClickListener {
-
-
-            findNavController().navigate(R.id.action_bmiFragment_to_bmiResultFragment)
-
         }
 
-
-
-
-
-
-
-
-
-
-
-        return binding.root
-    }
-
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProvider(this).get(BmiViewModel::class.java)
-        // TODO: Use the ViewModel
-
-
-
+        binding.calculate.setOnClickListener {
+            findNavController().navigate(R.id.action_bmiFragment_to_bmiResultFragment)
+        }
 
     }
 
 
-    override fun onDestroyView() {
+
+
+        override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
     }
