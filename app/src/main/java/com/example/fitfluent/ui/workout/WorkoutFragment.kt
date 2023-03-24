@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.example.fitfluent.MainActivity
 import com.example.fitfluent.R
 
 class WorkoutFragment() : Fragment() {
@@ -21,6 +22,13 @@ class WorkoutFragment() : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         return inflater.inflate(R.layout.fragment_workout, container, false)
+
+        val mainActivity = activity as MainActivity
+
+        val user = mainActivity.getLoggedUser()
+
+        val workouts = mainActivity.getWorkouts(user)
+
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {

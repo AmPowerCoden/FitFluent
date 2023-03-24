@@ -10,6 +10,8 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.AppBarConfiguration
 import com.example.fitfluent.data.DatabaseReader
+import com.example.fitfluent.data.DatabaseReaderWorkouts
+import com.example.fitfluent.data.Workout
 import com.example.fitfluent.ui.bmi.BmiFragment
 import com.example.fitfluent.ui.exercise.ExerciseFragment
 import com.example.fitfluent.ui.food.FoodFragment
@@ -34,6 +36,8 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         val logged_user = intent.getSerializableExtra("logged_user") as User
+
+
 
         var nutrition = getNutritionIngredient("chicken")
 
@@ -102,6 +106,19 @@ class MainActivity : AppCompatActivity() {
         }
 
         nutrition
+    }
+
+    fun getWorkouts (user: User) : List<Workout>
+    {
+        val dbReaderWorkouts =DatabaseReaderWorkouts(this)
+
+        return dbReaderWorkouts.getWorkouts(user.username)
+    }
+
+    fun registerWorkout (workout: Workout){
+        val dbReaderWorkouts = DatabaseReaderWorkouts(this)
+
+        dbReaderWorkouts.registerWorkout(workout)
     }
 
 
