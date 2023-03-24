@@ -44,6 +44,12 @@
     <string name="unit_cm">cm</string>
     <string name="unit_kg">kg</string>
 
+    <string name="recalculate">Neuberechnung</string>
+    <string name="your_age">Dein Alter:</string>
+    <string name="normal_bmi_range">Dein Dein BMI-Range:</string>
+    <string name="your_result">Dein Dein Ergebnis:</string>
+
+
 
 
 

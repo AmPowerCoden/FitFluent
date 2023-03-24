@@ -20,7 +20,11 @@
         android:id="@+id/bmiFragment"
         android:name="com.example.fitfluent.ui.bmi.BmiFragment"
         android:label="BMI Calculator"
-        tools:layout="@layout/fragment_bmi" />
+        tools:layout="@layout/fragment_bmi" >
+        <action
+            android:id="@+id/action_bmiFragment_to_bmiResultFragment"
+            app:destination="@id/bmiResultFragment" />
+    </fragment>
     <fragment
         android:id="@+id/foodFragment"
         android:name="com.example.fitfluent.ui.food.FoodFragment"
@@ -36,5 +40,14 @@
         android:name="com.example.fitfluent.ui.workout.WorkoutFragment"
         android:label="fragment_workout"
         tools:layout="@layout/fragment_workout" />
+    <fragment
+        android:id="@+id/bmiResultFragment"
+        android:name="com.example.fitfluent.ui.bmi.BmiResultFragment"
+        android:label="fragment_bmi_result"
+        tools:layout="@layout/fragment_bmi_result" >
+        <action
+            android:id="@+id/action_bmiResultFragment_to_bmiFragment"
+            app:destination="@id/bmiFragment" />
+    </fragment>
 
 </navigation>
