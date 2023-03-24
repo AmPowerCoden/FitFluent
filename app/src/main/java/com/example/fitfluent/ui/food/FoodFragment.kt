@@ -65,11 +65,16 @@ class FoodFragment: Fragment() {
                 nutrition = mainActivity.getNutritionIngredient(ingredient_search.text.toString())
                 var nutritients = getNutrients(nutrition)
                 var gram_search_double = gram_search.text.toString().toDouble()
+
                 shown_food.text = gram_search.text.toString() + " gramm vom Gericht " + ingredient_search.text.toString() + " haben folgende Nährwerte:" + makeShownFoodText(nutritients, gram_search_double)
                 subtract_calories_button.isEnabled = true
+
+
+
             }
             catch (e: java.lang.Exception){
                 shown_food.text = "There was an Error with your search... the api wasn't able to find any food with that name"
+                subtract_calories_button.isEnabled = false
             }
         }
 
@@ -80,11 +85,11 @@ class FoodFragment: Fragment() {
                 user = mainActivity.getLoggedUser()
 
                 usualCalories = (655.1 + (9.6 * user.weight_in_kg) + (1.8 * user.height_in_cm) - (4.7 * user.age))
-                if (user.calorie_intake > (user.activity_level * 100) + usualCalories)
+                if (user.calorie_intake > -(user.activity_level * 100))
                 {
                     headline.text = "Hallo ${user.username}! Sie haben für heute noch ${user.calorie_intake + user.activity_level * 100} von ${usualCalories + user.activity_level * 100} offen"
                 } else {
-                    headline.text = "Hallo ${user.username}! Sie haben heut schon ${(usualCalories) - (user.calorie_intake)} zu viel gegessen"
+                    headline.text = "Hallo ${user.username}! Sie haben heut schon ${- (user.calorie_intake) - user.activity_level * 100} zu viel gegessen"
                 }
 
 
@@ -98,14 +103,16 @@ class FoodFragment: Fragment() {
         }
 
 
-        if (user.calorie_intake < (user.activity_level * 100) + usualCalories)
+        if (user.calorie_intake > -(user.activity_level * 100))
         {
             binding.headlineFood.text = "Hallo ${user.username}! Sie haben für heute noch ${user.calorie_intake + user.activity_level * 100} von ${usualCalories + user.activity_level * 100} offen"
         } else {
-            binding.headlineFood.text = "Hallo ${user.username}! Sie haben heut schon ${(usualCalories) - (user.calorie_intake)} zu viel gegessen"
+            binding.headlineFood.text = "Hallo ${user.username}! Sie haben heut schon ${ - (user.calorie_intake) - user.activity_level * 100} zu viel gegessen"
         }
 
         checkDate(user)
+
+        user = mainActivity.getLoggedUser()
 
         return binding.root
     }
@@ -116,16 +123,22 @@ class FoodFragment: Fragment() {
     }
 
     fun getNutrients(nutrition: String) : List<String> {
-        val nutrients_only = nutrition.split("\"nutrients\":{").get(1).split("},").get(0)
-        val calories = nutrients_only.split("\"ENERC_KCAL\":").get(1).split(",").get(0)
-        val proteine = nutrients_only.split("\"PROCNT\":").get(1).split(",").get(0)
-        val fat = nutrients_only.split("\"FAT\":").get(1).split(",").get(0)
-        val carbs = nutrients_only.split("\"CHOCDF\":").get(1).split(",").get(0)
+        if (nutrition.startsWith("There was an Error")){
+            return listOf<String>("Error")
+        }
+        else{
+            val nutrients_only = nutrition.split("\"nutrients\":{").get(1).split("},").get(0)
+            val calories = nutrients_only.split("\"ENERC_KCAL\":").get(1).split(",").get(0)
+            val proteine = nutrients_only.split("\"PROCNT\":").get(1).split(",").get(0)
+            val fat = nutrients_only.split("\"FAT\":").get(1).split(",").get(0)
+            val carbs = nutrients_only.split("\"CHOCDF\":").get(1).split(",").get(0)
 
 
-        val nutrients = listOf<String>(calories, proteine, fat, carbs)
+            val nutrients = listOf<String>(calories, proteine, fat, carbs)
 
-        return nutrients
+            return nutrients
+        }
+
     }
 
     fun makeShownFoodText(nutrients : List<String>, amaount : Double) : String {

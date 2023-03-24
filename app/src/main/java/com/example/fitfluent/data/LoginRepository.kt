@@ -31,9 +31,9 @@ class LoginRepository(val dataSource: LoginDataSource) {
         // handle login
         val result = dataSource.login(username, password, dbReader)
 
-        if (result.username != "") {
-            setLoggedInUser(result)
-        }
+
+        setLoggedInUser(result)
+
 
         return result
     }

@@ -1,5 +1,6 @@
 package com.example.fitfluent.ui.login
 
+import android.content.Intent
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
