@@ -14,12 +14,18 @@ import com.example.fitfluent.MainActivity
 import com.example.fitfluent.R
 import com.example.fitfluent.data.DatabaseReader
 import com.example.fitfluent.data.User
+import com.example.fitfluent.databinding.ActivityMainBinding
 import com.example.fitfluent.databinding.ActivityRegisterBinding
+import com.example.fitfluent.databinding.FragmentBmiBinding
+import com.example.fitfluent.databinding.FragmentFoodBinding
 import org.w3c.dom.Text
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 
 class FoodFragment: Fragment() {
+
+    private var _binding: FragmentFoodBinding? = null
+    private val binding get() = _binding!!
 
     companion object {
         fun newInstance() = FoodFragment()
@@ -32,18 +38,19 @@ class FoodFragment: Fragment() {
         savedInstanceState: Bundle?
     ): View? {
 
+        _binding = FragmentFoodBinding.inflate(inflater, container, false)
 
-
-        val view = inflater.inflate(R.layout.fragment_food, container, false)
         val mainActivity = activity as MainActivity
 
-        val headline = view.findViewById<View>(R.id.headline_food) as TextView
-        val ingredient_search = view.findViewById<EditText>(R.id.search_bar_food) as EditText
-        val gram_search = view.findViewById<EditText>(R.id.grams_bar_food) as EditText
-        val get_food_btn = view.findViewById<Button>(R.id.get_food) as Button
-        val shown_food = view.findViewById<TextView>(R.id.found_food) as TextView
-        val subtract_calories_button = view.findViewById<Button>(R.id.subtract_food) as Button
-        val subtract_food_error = view.findViewById<TextView>(R.id.error_substract) as TextView
+        val headline = binding.headlineFood
+        val ingredient_search = binding.searchBarFood
+        val gram_search = binding.gramsBarFood
+        val get_food_btn = binding.getFood
+        val shown_food = binding.foundFood
+        val subtract_calories_button = binding.subtractFood
+        val subtract_food_error = binding.errorSubstract
+
+
         var nutrition = ""
 
         var user = mainActivity.getLoggedUser()
@@ -75,8 +82,7 @@ class FoodFragment: Fragment() {
                 usualCalories = (655.1 + (9.6 * user.weight_in_kg) + (1.8 * user.height_in_cm) - (4.7 * user.age))
                 if (user.calorie_intake > (user.activity_level * 100) + usualCalories)
                 {
-                    //headline.text = "Hallo ${user.username}! Sie haben für heute noch ${user.calorie_intake + user.activity_level * 100} von ${usualCalories + user.activity_level * 100} offen"
-                    headline.text = ""
+                    headline.text = "Hallo ${user.username}! Sie haben für heute noch ${user.calorie_intake + user.activity_level * 100} von ${usualCalories + user.activity_level * 100} offen"
                 } else {
                     headline.text = "Hallo ${user.username}! Sie haben heut schon ${(usualCalories) - (user.calorie_intake)} zu viel gegessen"
                 }
@@ -88,19 +94,20 @@ class FoodFragment: Fragment() {
             {
                 subtract_food_error.isVisible = true
             }
+
         }
 
 
-        if (user.calorie_intake > (user.activity_level * 100) + usualCalories)
+        if (user.calorie_intake < (user.activity_level * 100) + usualCalories)
         {
-            headline.text = "Hallo ${user.username}! Sie haben für heute noch ${user.calorie_intake + user.activity_level * 100} von ${usualCalories + user.activity_level * 100} offen"
+            binding.headlineFood.text = "Hallo ${user.username}! Sie haben für heute noch ${user.calorie_intake + user.activity_level * 100} von ${usualCalories + user.activity_level * 100} offen"
         } else {
-            headline.text = "Hallo ${user.username}! Sie haben heut schon ${(usualCalories) - (user.calorie_intake)} zu viel gegessen"
+            binding.headlineFood.text = "Hallo ${user.username}! Sie haben heut schon ${(usualCalories) - (user.calorie_intake)} zu viel gegessen"
         }
 
         checkDate(user)
 
-        return view
+        return binding.root
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {

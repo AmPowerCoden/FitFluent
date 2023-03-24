@@ -56,36 +56,6 @@ class MainActivity : AppCompatActivity() {
 
         setupActionBarWithNavController(navController, appBarConfiguration)
 
-
-        navController.addOnDestinationChangedListener { _, destination, _ ->
-            when (destination.id) {
-                R.id.bmiFragment -> {
-                    val fragment = BmiFragment.newInstance(bundle)
-                    supportFragmentManager.beginTransaction()
-                        .replace(R.id.nav_host_fragment_activity_main, fragment)
-                        .commit()
-                }
-                R.id.foodFragment -> {
-                    val fragment = FoodFragment.newInstance()
-                    supportFragmentManager.beginTransaction()
-                        .replace(R.id.nav_host_fragment_activity_main, fragment)
-                        .commit()
-                }
-                R.id.exerciseFragment -> {
-                    val fragment = ExerciseFragment.newInstance(bundle)
-                    supportFragmentManager.beginTransaction()
-                        .replace(R.id.nav_host_fragment_activity_main, fragment)
-                        .commit()
-                }
-                R.id.workoutFragment -> {
-                    val fragment = WorkoutFragment.newInstance(bundle)
-                    supportFragmentManager.beginTransaction()
-                        .replace(R.id.nav_host_fragment_activity_main, fragment)
-                        .commit()
-                }
-            }
-        }
-
         navView.setupWithNavController(navController)
 
     }
