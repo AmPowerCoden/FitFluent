@@ -49,6 +49,9 @@
     <string name="normal_bmi_range">Dein Dein BMI-Range:</string>
     <string name="your_result">Dein Dein Ergebnis:</string>
 
+    <!-- String fot the Workouts Fragment -->
+    <string name="workout_heading">Hier sind ihre Workouts</string>
+
 
 
 

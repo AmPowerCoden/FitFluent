@@ -32,8 +32,8 @@ class DatabaseReaderWorkouts(context: Context) : SQLiteOpenHelper(context,
             val contentValues = ContentValues()
             contentValues.put(DatabaseReaderWorkouts.ERSTELLER, "auto")
             contentValues.put(DatabaseReaderWorkouts.TYP, "time-intervall")
-            contentValues.put(DatabaseReaderWorkouts.EXERCISES, "")
-            contentValues.put(DatabaseReaderWorkouts.TIMES, "")
+            contentValues.put(DatabaseReaderWorkouts.EXERCISES, "klimmzug, liegestütze, dips")
+            contentValues.put(DatabaseReaderWorkouts.TIMES, "12, 20, 16")
             contentValues.put(DatabaseReaderWorkouts.FREQUENCY, "Montag, Mittwoch, Freitag")
 
             val success = p0?.insert(DatabaseReaderWorkouts.TABLE, null, contentValues)
@@ -76,7 +76,7 @@ class DatabaseReaderWorkouts(context: Context) : SQLiteOpenHelper(context,
         return success
     }
 
-    fun getWorkouts(name: String) : List<Workout>{
+    fun getWorkouts(name: String) : MutableList<Workout>{
         var workoutList = ArrayList<Workout>()
 
         val db = this.readableDatabase
