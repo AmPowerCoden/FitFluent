@@ -100,11 +100,18 @@ class DatabaseReaderWorkouts(context: Context) : SQLiteOpenHelper(context,
             val times = cursor.getString(3)
             val frequency = cursor.getString(4)
             val bmiRange = cursor.getString(5)
-            val ranges = bmiRange.split(" - ")
-            if (user.bmi_score.toDouble() > ranges[0].toDouble() && user.bmi_score.toDouble() < ranges[1].toDouble())
-            {
+            if (!bmiRange.isEmpty()){
+                val ranges = bmiRange.split(" - ")
+                if ((user.bmi_score.toDouble() > ranges[0].toDouble() && user.bmi_score.toDouble() < ranges[1].toDouble()) || bmiRange.isEmpty())
+                {
+                    workoutList.add(Workout(ersteller, typ, exercise, times, frequency, bmiRange))
+                }
+            }
+            else{
                 workoutList.add(Workout(ersteller, typ, exercise, times, frequency, bmiRange))
             }
+
+
         } while (cursor.moveToNext())
 
         return workoutList

@@ -35,6 +35,7 @@ class WorkoutAdapter(val workoutList: List<Workout>) : RecyclerView.Adapter<Work
             counter++
         }
         val string = sb.toString()
+        holder.binding.workoutHeading.text = "Workout " + (position + 1).toString()
         holder.binding.workoutList.text = string
         holder.binding.workoutFrequency.text = c.frequency
     }
