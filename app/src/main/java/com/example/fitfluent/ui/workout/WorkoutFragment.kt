@@ -40,6 +40,9 @@ class WorkoutFragment() : Fragment() {
 
         val workouts = mainActivity.getWorkouts(user)
 
+
+        mainActivity.registerWorkout(Workout("auto", "wiederholungen", "klimmzug, liegestütz, dips", "12, 20, 16" , "Montag, Mittwoch, Freitag", "25 - 30"))
+
         workoutList.addAll(workouts)
 
         binding.WorkoutList.layoutManager = LinearLayoutManager(context, RecyclerView.VERTICAL, false)
