@@ -112,7 +112,7 @@ class MainActivity : AppCompatActivity() {
     {
         val dbReaderWorkouts =DatabaseReaderWorkouts(this)
 
-        return dbReaderWorkouts.getWorkouts(user.username)
+        return dbReaderWorkouts.getWorkouts(user)
     }
 
     fun registerWorkout (workout: Workout){

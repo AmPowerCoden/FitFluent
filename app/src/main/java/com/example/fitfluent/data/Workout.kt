@@ -5,6 +5,7 @@ class Workout(
     val typ : String,
     val exercises : String,
     val times : String,
-    val frequency : String
+    val frequency : String,
+    val bmiRange : String
 ) {
 }
