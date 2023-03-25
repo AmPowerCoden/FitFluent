@@ -16,50 +16,41 @@ object Calculation {
 
     private fun getAdultCategory(result: Float): String {
         val category: String = if (result < 15) {
-            "Severe Thinness"
+            "Schweres Untergewicht"
         } else if (result in 15.0..16.0) {
-            "Moderate Thinness"
+            "Moderates Untergewicht"
         } else if (result > 16 && result <= 18.5) {
-            "Mild Thinness"
+            "Leichtes Untergewicht"
         } else if (result > 18.5 && result <= 25) {
-            "Normal"
+            "Normalgewicht"
         } else if (result > 25 && result <= 30) {
-            "Overweight"
+            "Übergewicht"
         } else if (result > 30 && result <= 35) {
-            "Obese Class I"
+            "Adipositas Grad I"
         } else if (result > 35 && result <= 40) {
-            "Obese Class II"
+            "Adipositas Grad II"
         } else {
-            "Obese Class III"
+            "Adipositas Grad III"
         }
         return category
     }
 
     private fun getChildCategory(result: Float): String {
         val category: String = when {
-            result < 15 -> {
-                "very severely underweight"
+            result < 10 -> {
+                "Untergewicht"
             }
-            result in 15.0..16.0 -> {
-                "severely underweight"
+            result in 10.0..90.0 -> {
+                "Normalgewicht"
             }
-            result > 16 && result <= 18.5 -> {
-                "underweight"
+            result > 90.0 && result <= 97.0 -> {
+                "Übergewicht"
             }
-            result > 18.5 && result <= 25 -> {
-                "normal (healthy weight)"
-            }
-            result > 25 && result <= 30 -> {
-                "overweight"
-            }
-            result > 30 && result <= 35 -> {
-                "moderately obese"
-            }
-            result > 35 && result <= 40 -> {
-                "severely obese"
+            result > 97.0 && result <= 99.5 -> {
+                "Adipositas"
             }
             else -> {
-                "very severely obese"
+                "Extreme Adipositas"
             }
         }
         return category

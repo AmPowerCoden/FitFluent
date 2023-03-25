@@ -56,7 +56,7 @@ class BmiFragment() : Fragment() {
 
         binding.apply {
 
-            welcomeText.text = "Hallo ${logged_user.username}! Mit diesem Rechner kannst du deinen BMI berechnen lassen. Außerdem kann aus dem Ergebnis ein für dich angepasster Trainingsplan erstellt werden."
+            welcomeText.text = "Hallo ${logged_user.username}! Mit diesem Rechner kannst du deinen BMI berechnen lassen."
             Seekbar.progress = logged_user.height_in_cm
             heightTxt.text = "${logged_user.height_in_cm.toString() + resources.getString(R.string.unit_cm)} "
             weightTxt.text = "${logged_user.weight_in_kg.toString() + resources.getString(R.string.unit_kg)} "
