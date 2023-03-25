@@ -38,7 +38,7 @@ class WorkoutFragment() : Fragment() {
 
         val user = mainActivity.getLoggedUser()
 
-        mainActivity
+        //mainActivity
 
         val workouts = mainActivity.getWorkouts(user)
 

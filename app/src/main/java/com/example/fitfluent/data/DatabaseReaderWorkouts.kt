@@ -27,7 +27,7 @@ class DatabaseReaderWorkouts(context: Context) : SQLiteOpenHelper(context,
         if(!tableExists(p0)){
             val createTable = ("CREATE TABLE " + DatabaseReaderWorkouts.TABLE + "(" + DatabaseReaderWorkouts.ERSTELLER + " TEXT, " + DatabaseReaderWorkouts.TYP + " TEXT, " + DatabaseReaderWorkouts.EXERCISES + " TEXT, " + DatabaseReaderWorkouts.TIMES + " TEXT, "
                     + DatabaseReaderWorkouts.FREQUENCY + " INTEGER, " + DatabaseReaderWorkouts.BMIRANGE + " TEXT)")
-            p0?.execSQL("DROP TABLE " + TABLE)
+            //p0?.execSQL("DROP TABLE " + TABLE)
             p0?.execSQL(createTable)
 
             val contentValues = ContentValues()
