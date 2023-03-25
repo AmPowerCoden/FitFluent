@@ -149,4 +149,15 @@ class DatabaseReader(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME
 
 
     }
+
+    fun recreateDB(){
+        val db = this.writableDatabase
+
+        val createTable = ("CREATE TABLE " + TABLE + "(" + USERNAME + " TEXT PRIMARY KEY, " + PASSWORD + " TEXT, " + AGE + " INTEGER, " + HEIGHT + " INTEGER, "
+                + WEIGHT + " INTEGER, " + CALORIE_INTAKE + " INTEGER, " + CALORIE_TIME + " TEXT, " + ACTIVITY_LEVEL + " FLOAT, " + GENDER + " TEXT, "
+                + BMI_SCORE + " FLOAT)" )
+        db.execSQL("DROP TABLE " + TABLE)
+        db.execSQL(createTable)
+
+    }
 }
