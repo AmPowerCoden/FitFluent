@@ -12,17 +12,10 @@ import androidx.navigation.ui.AppBarConfiguration
 import com.example.fitfluent.data.DatabaseReader
 import com.example.fitfluent.data.DatabaseReaderWorkouts
 import com.example.fitfluent.data.Workout
-import com.example.fitfluent.ui.bmi.BmiFragment
-import com.example.fitfluent.ui.exercise.ExerciseFragment
-import com.example.fitfluent.ui.food.FoodFragment
-import com.example.fitfluent.ui.workout.WorkoutFragment
 import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.suspendCancellableCoroutine
 import okhttp3.*
 import java.io.IOException
-import java.net.HttpURLConnection
-import java.net.URL
-import java.time.LocalDateTime
 import kotlin.coroutines.resume
 import kotlin.coroutines.resumeWithException
 

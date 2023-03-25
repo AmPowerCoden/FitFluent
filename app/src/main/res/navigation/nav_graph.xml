@@ -43,8 +43,15 @@
     <fragment
         android:id="@+id/bmiResultFragment"
         android:name="com.example.fitfluent.ui.bmi.BmiResultFragment"
-        android:label="fragment_bmi_result"
+        android:label="BMI Ergebnis"
         tools:layout="@layout/fragment_bmi_result" >
+        <argument
+            android:name="bmi"
+            app:argType="float" />
+        <argument
+            android:name="age"
+            app:argType="string" />
+
         <action
             android:id="@+id/action_bmiResultFragment_to_bmiFragment"
             app:destination="@id/bmiFragment" />
