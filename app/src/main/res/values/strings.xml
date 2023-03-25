@@ -52,6 +52,9 @@
     <string name="saveData">Speichere Daten</string>
     <string name="suggestion">Vorschlag</string>
 
+    <!-- String fot the Workouts Fragment -->
+    <string name="workout_heading">Hier sind ihre Workouts</string>
+
 
 
 

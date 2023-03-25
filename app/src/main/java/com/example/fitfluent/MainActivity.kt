@@ -101,7 +101,7 @@ class MainActivity : AppCompatActivity() {
         nutrition
     }
 
-    fun getWorkouts (user: User) : List<Workout>
+    fun getWorkouts (user: User) : MutableList<Workout>
     {
         val dbReaderWorkouts =DatabaseReaderWorkouts(this)
 
