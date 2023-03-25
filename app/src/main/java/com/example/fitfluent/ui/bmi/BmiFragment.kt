@@ -167,7 +167,7 @@ class BmiFragment() : Fragment() {
     {
         val dbReader = getContext()?.let { DatabaseReader(it) }
 
-        var new_user = User(user.username, user.password, viewModel._height, viewModel._weight, viewModel._age, user.calorie_intake, user.calorie_time, user.activity_level, viewModel._gender, user.bmi_score)
+        var new_user = User(user.username, user.password, viewModel._height, viewModel._weight, viewModel._age, user.calorie_intake, user.calorie_time, user.activity_level, viewModel._gender, viewModel._bmi_score)
         dbReader?.updateUser(user, new_user)
     }
 

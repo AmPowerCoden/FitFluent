@@ -13,7 +13,7 @@ class BmiViewModel : ViewModel() {
     var _height  = 0
     var _age = 0
 
-    var _bmi_score = 0
+    var _bmi_score = 0F
 
 
     fun getData(user : User) {
@@ -26,6 +26,7 @@ class BmiViewModel : ViewModel() {
 
     fun calculate_bmi() : Float {
         var bmi_score = (((_weight.toFloat() / (_height.toFloat() / 100 * _height.toFloat() / 100)) * 100).roundToInt()).toFloat() / 100
+        _bmi_score = bmi_score
         return bmi_score
     }
 
