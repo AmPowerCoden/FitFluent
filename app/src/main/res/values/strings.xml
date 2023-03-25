@@ -43,11 +43,14 @@
     <string name="calculate">Calculate</string>
     <string name="unit_cm">cm</string>
     <string name="unit_kg">kg</string>
+    <string name="unit_kgm2">kg/m²</string>
 
     <string name="recalculate">Neuberechnung</string>
     <string name="your_age">Dein Alter:</string>
-    <string name="normal_bmi_range">Dein Dein BMI-Range:</string>
-    <string name="your_result">Dein Dein Ergebnis:</string>
+    <string name="normal_bmi_range">Normaler BMI-Range:</string>
+    <string name="your_result">Dein Ergebnis:</string>
+    <string name="saveData">Speichere Daten</string>
+    <string name="suggestion">Vorschlag</string>
 
 
 
