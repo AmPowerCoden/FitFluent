@@ -137,5 +137,12 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    fun createWorkoutDb()
+    {
+        val dbReader = DatabaseReaderWorkouts(this)
+
+        dbReader.createIfNotExists()
+    }
+
 
 }

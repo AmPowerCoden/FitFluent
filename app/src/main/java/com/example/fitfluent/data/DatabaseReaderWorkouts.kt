@@ -62,15 +62,17 @@ class DatabaseReaderWorkouts(context: Context) : SQLiteOpenHelper(context,
         return result
     }
 
-    fun createIfNotExists(){
+    fun createIfNotExists() {
         val db = this.writableDatabase
 
-        if(!tableExists(db)){
-            val createTable = ("CREATE TABLE " + DatabaseReaderWorkouts.TABLE + "(" + DatabaseReaderWorkouts.ERSTELLER + " TEXT, " + DatabaseReaderWorkouts.TYP + " TEXT, " + DatabaseReaderWorkouts.EXERCISES + " TEXT, " + DatabaseReaderWorkouts.TIMES + " TEXT, "
-                    + DatabaseReaderWorkouts.FREQUENCY + " INTEGER, " + DatabaseReaderWorkouts.BMIRANGE + " TEXT)")
+        if (!tableExists(db)) {
+            val createTable =
+                ("CREATE TABLE " + DatabaseReaderWorkouts.TABLE + "(" + DatabaseReaderWorkouts.ERSTELLER + " TEXT, " + DatabaseReaderWorkouts.TYP + " TEXT, " + DatabaseReaderWorkouts.EXERCISES + " TEXT, " + DatabaseReaderWorkouts.TIMES + " TEXT, "
+                        + DatabaseReaderWorkouts.FREQUENCY + " INTEGER, " + DatabaseReaderWorkouts.BMIRANGE + " TEXT)")
             db.execSQL(createTable)
 
         }
+    }
 
     fun registerWorkout(workout: Workout) : Long{
 
