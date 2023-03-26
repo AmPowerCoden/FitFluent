@@ -42,6 +42,7 @@ class FoodFragment: Fragment() {
 
         val mainActivity = activity as MainActivity
 
+
         val headline = binding.headlineFood
         val ingredient_search = binding.searchBarFood
         val gram_search = binding.gramsBarFood
@@ -54,6 +55,10 @@ class FoodFragment: Fragment() {
         var nutrition = ""
 
         var user = mainActivity.getLoggedUser()
+
+        checkDate(user)
+
+        user = mainActivity.getLoggedUser()
 
         var usualCalories = (655.1 + (9.6 * user.weight_in_kg) + (1.8 * user.height_in_cm) - (4.7 * user.age))
 
@@ -110,7 +115,7 @@ class FoodFragment: Fragment() {
             binding.headlineFood.text = "Hallo ${user.username}! Sie haben heut schon ${ - (user.calorie_intake) - user.activity_level * 100} zu viel gegessen"
         }
 
-        checkDate(user)
+
 
         user = mainActivity.getLoggedUser()
 
