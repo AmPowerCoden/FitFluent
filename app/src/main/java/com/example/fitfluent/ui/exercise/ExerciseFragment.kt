@@ -44,6 +44,8 @@ class ExerciseFragment() : Fragment() {
         // Get the main activity instance
         val mainActivity = activity as MainActivity
 
+        mainActivity.createExerciseDb()
+
         // Get the list of exercises from the main activity
         val exercises = mainActivity.getExercises()
 

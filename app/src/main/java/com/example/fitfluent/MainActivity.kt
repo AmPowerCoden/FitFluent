@@ -172,17 +172,27 @@ class MainActivity : AppCompatActivity() {
         dbReader.createIfNotExists()
     }
 
+    fun createExerciseDb()
+    {
+        val dbReader = DatabaseReaderExercises(this)
+
+        dbReader.createTable()
+    }
+
     // This function drops the databases for the main app and workouts
     fun dropDBs()
     {
         // Create new instances of the DatabaseReader and DatabaseReaderWorkouts classes
         val dbReader = DatabaseReader(this)
         val dbWorkoutsReader = DatabaseReaderWorkouts(this)
+        val dbReaderExercises = DatabaseReaderExercises(this)
 
         // Call the dropDB method of the DatabaseReader object to drop the main app database
         dbReader.dropDB()
         // Call the dropDB method of the DatabaseReaderWorkouts object to drop the workouts database
         dbWorkoutsReader.dropDB()
+
+        dbReaderExercises.dropTable()
     }
 
 

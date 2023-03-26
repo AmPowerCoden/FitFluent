@@ -5,6 +5,7 @@ import android.content.Context
 import android.database.Cursor
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
+import kotlin.math.E
 
 class DatabaseReaderExercises (context: Context) : SQLiteOpenHelper(context, DatabaseReaderExercises.DATABASE_NAME, null, DatabaseReaderExercises.DATABASE_VERSION)
 {
@@ -107,6 +108,23 @@ class DatabaseReaderExercises (context: Context) : SQLiteOpenHelper(context, Dat
         } while (cursor.moveToNext())
 
         return exerciseList
+    }
+
+    fun createTable(){
+        val db = this.writableDatabase
+        if (!tableExists(db))
+        {
+            db.execSQL("CREATE TABLE $TABLE ($NAME TEXT, $DESCRIPTION TEXT, $MATERIAL TEXT, $IMAGE TEXT, $VIDEO TEXT)")
+
+            registerExercise(Exercise("Squats","Beine schulterbreit aufstellen und mit geradem Rücken nach unten gehen, bis die Knie im 90 Grad Winkel sind. Arme dabei vor dem Körper halten. Kurz verweilen und langsam wieder aufstehen.","Kein Zusatzmaterial","Squats","test"))
+            registerExercise(Exercise("Squats","Beine schulterbreit aufstellen und mit geradem Rücken nach unten gehen, bis die Knie im 90 Grad Winkel sind. Arme dabei vor dem Körper halten. Kurz verweilen und langsam wieder aufstehen.","Kein Zusatzmaterial","Squats","test"))
+
+        }
+    }
+
+    fun dropTable(){
+        val db = this.writableDatabase
+        db.execSQL("DROP TABLE $TABLE")
     }
 
 
