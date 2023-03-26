@@ -23,6 +23,7 @@ class DatabaseReaderExercises (context: Context) : SQLiteOpenHelper(context, Dat
 
     // Create the database table if it does not exist
     override fun onCreate(p0: SQLiteDatabase?) {
+        // Auskommentierter Code
         /*if(!tableExists(p0)){
             val createTable = ("CREATE TABLE " + DatabaseReaderExercises.TABLE + "(" + DatabaseReaderExercises.NAME + " TEXT, " + DatabaseReaderExercises.DESCRIPTION + " TEXT, " + DatabaseReaderExercises.MATERIAL + " TEXT, " + DatabaseReaderExercises.IMAGE + " TEXT, " + DatabaseReaderExercises.VIDEO + " TEXT)")
             //p0?.execSQL("DROP TABLE " + TABLE)
