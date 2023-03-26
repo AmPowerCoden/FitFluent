@@ -66,10 +66,24 @@ class DatabaseReaderWorkouts(context: Context) : SQLiteOpenHelper(context,
         val db = this.writableDatabase
 
         if (!tableExists(db)) {
+            //db.execSQL("DROP TABLE " + TABLE)
+
+            val contentValues = ContentValues()
+            contentValues.put(DatabaseReaderWorkouts.ERSTELLER, "auto")
+            contentValues.put(DatabaseReaderWorkouts.TYP, "time-intervall")
+            contentValues.put(DatabaseReaderWorkouts.EXERCISES, "klimmzug, liegestütze, dips")
+            contentValues.put(DatabaseReaderWorkouts.TIMES, "12, 20, 16")
+            contentValues.put(DatabaseReaderWorkouts.FREQUENCY, "Montag, Mittwoch, Freitag")
+            contentValues.put(DatabaseReaderWorkouts.BMIRANGE, "18 - 24")
+
+            val success = db.insert(DatabaseReaderWorkouts.TABLE, null, contentValues)
+
             val createTable =
                 ("CREATE TABLE " + DatabaseReaderWorkouts.TABLE + "(" + DatabaseReaderWorkouts.ERSTELLER + " TEXT, " + DatabaseReaderWorkouts.TYP + " TEXT, " + DatabaseReaderWorkouts.EXERCISES + " TEXT, " + DatabaseReaderWorkouts.TIMES + " TEXT, "
                         + DatabaseReaderWorkouts.FREQUENCY + " INTEGER, " + DatabaseReaderWorkouts.BMIRANGE + " TEXT)")
             db.execSQL(createTable)
+
+            db.insert(DatabaseReaderWorkouts.TABLE, null, contentValues)
 
         }
     }
