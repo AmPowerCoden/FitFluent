@@ -4,14 +4,11 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.navigation.findNavController
 import androidx.navigation.ui.setupWithNavController
-import com.example.fitfluent.data.User
 import com.example.fitfluent.databinding.ActivityMainBinding
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.AppBarConfiguration
-import com.example.fitfluent.data.DatabaseReader
-import com.example.fitfluent.data.DatabaseReaderWorkouts
-import com.example.fitfluent.data.Workout
+import com.example.fitfluent.data.*
 import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.suspendCancellableCoroutine
 import okhttp3.*
@@ -112,6 +109,13 @@ class MainActivity : AppCompatActivity() {
         val dbReaderWorkouts = DatabaseReaderWorkouts(this)
 
         dbReaderWorkouts.registerWorkout(workout)
+    }
+
+    fun getExercises() : MutableList<Exercise>
+    {
+        val DatabaseReaderExercises = DatabaseReaderExercises(this)
+
+        return DatabaseReaderExercises.getExercises()
     }
 
 
