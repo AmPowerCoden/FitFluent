@@ -108,7 +108,7 @@ class WorkoutFragment() : Fragment() {
 
         // Erstes Workout im klassichen 2er Split
         // Workout 1 -- Untergewicht -- Tag 1 Bauch&Beine -- BMI bis 18  -- 2 Sätze
-       //mainActivity.registerWorkout(Workout("auto", "wiederholungen", "Wandsitzen, Squats, Planke, Bergsteiger, Wadenheber, Crunches, Arm- und Beinstecker im Vierfuesslerstand", "12-15, 12-15, 12-15, 12-15, 12-15, 12-15, 12-15" , "Dienstag", "0 - 18"))
+        //mainActivity.registerWorkout(Workout("auto", "wiederholungen", "Wandsitzen, Squats, Planke, Bergsteiger, Wadenheber, Crunches, Arm- und Beinstecker im Vierfuesslerstand", "12-15, 12-15, 12-15, 12-15, 12-15, 12-15, 12-15" , "Dienstag", "0 - 18"))
 
         // Workout 1 -- Untergewicht -- Tag 2 Oberkörper -- BMI bis 18 -- 2 Sätze
         //mainActivity.registerWorkout(Workout("auto", "wiederholungen", "Liegestuetze, Dips an Stuhlkannte, Bizeps mit Fitnessband oder Wasserflasche, Seitstuetz, Schulterdruecken am Tuerrahmen, Superman, Schulterbruecke", "12-15, 12-15, 12-15, 12-15, 12-15, 12-15, 12-15" , "Freitag", "0 - 18"))
@@ -118,13 +118,13 @@ class WorkoutFragment() : Fragment() {
 
         // Zweites Workout im 3er Split
         // Workout 2 -- Normalgewicht -- Tag 1 Brust&Arme -- BMI 19 bis 25 -- 2 Sätze
-        mainActivity.registerWorkout(Workout("auto", "wiederholungen", "Liegestuetze, Dips an Stuhlkannte, Bizeps mit Fitnessband oder Wasserflasche, Klimmzuege, Arm- und Beinstecker im Vierfuesslerstand", "12-15, 12-15, 12-15, 12-15, 12-15" , "Montag", "19 - 25"))
+        //mainActivity.registerWorkout(Workout("auto", "wiederholungen", "Liegestuetze, Dips an Stuhlkannte, Bizeps mit Fitnessband oder Wasserflasche, Klimmzuege, Arm- und Beinstecker im Vierfuesslerstand", "12-15, 12-15, 12-15, 12-15, 12-15" , "Montag", "19 - 25"))
 
         // Workout 2 -- Normalgewicht -- Tag 2 Bauch&Beine -- BMI 19 bis 25 -- 2 Sätze
-        mainActivity.registerWorkout(Workout("auto", "wiederholungen", "Wandsitzen, Squats, Ausfallschritte mit Rotation, Planke, Wadenheber, Bergsteiger, Crunches", "12-15, 12-15, 12-15, 12-15, 12-15, 12-15, 12-15" , "Mittwoch", "19 - 25"))
+        //mainActivity.registerWorkout(Workout("auto", "wiederholungen", "Wandsitzen, Squats, Ausfallschritte mit Rotation, Planke, Wadenheber, Bergsteiger, Crunches", "12-15, 12-15, 12-15, 12-15, 12-15, 12-15, 12-15" , "Mittwoch", "19 - 25"))
 
         // Workout 2 -- Normalgewicht -- Tag 3 Rücken&Schultern -- BMI 19 bis 25 -- 2 Sätze
-        mainActivity.registerWorkout(Workout("auto", "wiederholungen", "Kreuzheben mit Flaschen, Klimmzuege, Latziehen mit Fitnessband, Seitstuetz, Schulterbruecke, Schulterdruecken am Tuerrahmen", "12-15, 12-15, 12-15, 12-15, 12-15, 12-15" , "Freitag", "19 - 25"))
+        //mainActivity.registerWorkout(Workout("auto", "wiederholungen", "Kreuzheben mit Flaschen, Klimmzuege, Latziehen mit Fitnessband, Seitstuetz, Schulterbruecke, Schulterdruecken am Tuerrahmen", "12-15, 12-15, 12-15, 12-15, 12-15, 12-15" , "Freitag", "19 - 25"))
 
 
         //###############
