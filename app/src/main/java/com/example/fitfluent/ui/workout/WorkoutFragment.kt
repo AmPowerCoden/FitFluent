@@ -42,7 +42,12 @@ class WorkoutFragment() : Fragment() {
 
         val workouts = mainActivity.getWorkouts(user)
 
-        workouts.removeAt(0)
+
+        if(workouts.size != 0)
+        {
+            workouts.removeAt(0)
+        }
+
 
         var counter = 0
 
