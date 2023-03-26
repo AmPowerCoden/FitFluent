@@ -19,22 +19,27 @@ import com.example.fitfluent.data.User
 import com.example.fitfluent.databinding.FragmentBmiBinding
 import kotlin.math.log
 
+// Define the BmiFragment class
 class BmiFragment() : Fragment() {
 
+    // Initialize the view binding variable
     private var _binding: FragmentBmiBinding? = null
     private val binding get() = _binding!!
+
+    // Initialize the view model variable
     private lateinit var viewModel: BmiViewModel
 
+    // Initialize the height and chosen variables
     var height: Float? = null
     private var chosen: Boolean = true
 
-
-
+    // Define the companion object
     companion object {
         fun newInstance(bundle: Bundle) = BmiFragment()
     }
 
 
+    // Create the view for the fragment
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -45,15 +50,18 @@ class BmiFragment() : Fragment() {
 
 
 
+    // Create the activity for the fragment
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
+        // Initialize the view model
         viewModel = ViewModelProvider(this).get(BmiViewModel::class.java)
 
-
+        // Get the logged in user
         var logged_user = (activity as MainActivity).getLoggedUser()
 
         viewModel.getData(logged_user)
 
+        // Set the data in the UI
         binding.apply {
 
             welcomeText.text = "Hallo ${logged_user.username}! Mit diesem Rechner kannst du deinen BMI berechnen lassen."
@@ -81,13 +89,17 @@ class BmiFragment() : Fragment() {
     }
 
 
+    // Create the view for the fragment
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
 
+        // Set the click listeners for the UI elements
         binding.apply {
+            // Handle the click event for the male card view
             cardViewMale.setOnClickListener {
                 if(chosen) {
+                    // If already selected, reset to default state and disable the female card view
                     maleTxt.setTextColor(Color.parseColor("#FFFFFF"))
                     maleTxt.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.ic_bmi_male_white, 0, 0)
                     cardViewFemale.isEnabled = false
@@ -95,6 +107,8 @@ class BmiFragment() : Fragment() {
                     chosen = false
 
                 } else {
+                    // If not selected, change appearance and enable the female card view
+                    maleTxt.setTextColor(Color.parseColor("#8D8E99"))
                     maleTxt.setTextColor(Color.parseColor("#8D8E99"))
                     maleTxt.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.ic_bmi_male, 0, 0)
                     cardViewFemale.isEnabled = true
@@ -102,8 +116,10 @@ class BmiFragment() : Fragment() {
                 }
             }
 
+            // Handle the click event for the female card view
             cardViewFemale.setOnClickListener {
                 if(chosen) {
+                    // If already selected, reset to default state and disable the male card view
                     femaleTxt.setTextColor(Color.parseColor("#FFFFFF"))
                     femaleTxt.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.ic_bmi_female_white, 0, 0)
                     cardViewMale.isEnabled = false
@@ -111,6 +127,7 @@ class BmiFragment() : Fragment() {
                     chosen = false
 
                 } else {
+                    // If not selected, change appearance and enable the male card view
                     femaleTxt.setTextColor(Color.parseColor("#8D8E99"))
                     femaleTxt.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.ic_bmi_female, 0, 0)
                     cardViewMale.isEnabled = true
@@ -118,8 +135,10 @@ class BmiFragment() : Fragment() {
                 }
             }
 
+            // Handle the seekbar value change event
             Seekbar.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
                 override fun onProgressChanged(seekBar: SeekBar, progress: Int, fromUser: Boolean) {
+                    // Update the height text view and view model variable
                     val ht = progress.toString() + resources.getString(R.string.unit_cm)
                     binding.heightTxt.text = ht
                     viewModel._height = progress
@@ -131,6 +150,7 @@ class BmiFragment() : Fragment() {
             })
 
 
+            // Handle the click events for the weight plus and minus buttons
             weightPlus.setOnClickListener {
                 binding.weightTxt.text = "${viewModel._weight++.toString() + resources.getString(R.string.unit_kg)} "
             }
@@ -140,6 +160,7 @@ class BmiFragment() : Fragment() {
             }
 
 
+            // Handle the click events for the age plus and minus buttons
             agePlus.setOnClickListener {
                 binding.age.text = viewModel._age++.toString()
             }
@@ -149,12 +170,15 @@ class BmiFragment() : Fragment() {
             }
         }
 
+        // Handle the click event for the calculate button
         binding.calculate.setOnClickListener {
 
+            // Navigate to the BMI result fragment with the calculated BMI and user age
             //findNavController().navigate(R.id.bmiResultFragment)
             //val action = BmiFragmentDirections.actionBmiFragmentToBmiResultFragment(viewModel.calculate_bmi(), viewModel._age)
             val action = BmiFragmentDirections.actionBmiFragmentToBmiResultFragment(viewModel.calculate_bmi(), viewModel._age.toString())
 
+            // Get the logged in user and save their updated data to the database
             var logged_user = (activity as MainActivity).getLoggedUser()
             saveData(logged_user)
 
@@ -163,6 +187,7 @@ class BmiFragment() : Fragment() {
 
     }
 
+    // Save updated user data to the database
     fun saveData(user : User)
     {
         val dbReader = getContext()?.let { DatabaseReader(it) }

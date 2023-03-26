@@ -22,9 +22,12 @@ class ExerciseFragment() : Fragment() {
 
     private var _binding: FragmentExerciseBinding? = null
     private val binding get() = _binding!!
+    // Create a mutable list to store exercises
     private var exerciseList: MutableList<Exercise> = mutableListOf()
+    // Initialize the adapter with the exercise list
     private val exerciseAdapter = ExerciseAdapter(exerciseList)
 
+    // Define a companion object to create a new instance of the fragment with a bundle
     companion object {
         fun newInstance(bundle: Bundle) = ExerciseFragment()
     }
@@ -35,14 +38,19 @@ class ExerciseFragment() : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        // Inflate the layout for this fragment
         _binding = FragmentExerciseBinding.inflate(inflater, container, false)
 
+        // Get the main activity instance
         val mainActivity = activity as MainActivity
 
+        // Get the list of exercises from the main activity
         val exercises = mainActivity.getExercises()
 
+        // Add the exercises to the list
         exerciseList.addAll(exercises)
 
+        // Set up the RecyclerView and attach the adapter
         binding.ExerciseList.layoutManager = LinearLayoutManager(context, RecyclerView.VERTICAL, false)
         binding.ExerciseList.adapter = exerciseAdapter
         exerciseAdapter.notifyDataSetChanged()
@@ -53,6 +61,7 @@ class ExerciseFragment() : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
+        // Initialize the view model for this fragment
         viewModel = ViewModelProvider(this).get(ExerciseViewModel::class.java)
         // TODO: Use the ViewModel
     }

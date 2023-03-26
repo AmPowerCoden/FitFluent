@@ -27,20 +27,23 @@ class LoginActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        // Inflate the layout
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        // Get references to UI elements
         val username = binding.username
         val password = binding.password
         val login = binding.login
         val loading = binding.loading
         val register = binding.register
+        // Initialize database reader and enable register button
         val dbReader = DatabaseReader(this)
-
         if (register != null) {
             register.isEnabled = true
         }
 
+        // Create the database if it doesn't exist
         dbReader.onCreate(dbReader.writableDatabase)
 
         loginViewModel = ViewModelProvider(this, LoginViewModelFactory())
@@ -49,9 +52,10 @@ class LoginActivity : AppCompatActivity() {
         loginViewModel.loginFormState.observe(this@LoginActivity, Observer {
             val loginState = it ?: return@Observer
 
-            // disable login button unless both username / password is valid
+            // Disable login button unless both username / password is valid
             login.isEnabled = loginState.isDataValid
 
+            // Display error messages for username and password fields, if any
             if (loginState.usernameError != null) {
                 username.error = getString(loginState.usernameError)
             }
@@ -63,19 +67,23 @@ class LoginActivity : AppCompatActivity() {
         loginViewModel.loginResult.observe(this@LoginActivity, Observer {
             val loginResult = it ?: return@Observer
 
+            // Hide loading spinner
             loading.visibility = View.GONE
+            // Display error message if login was unsuccessful
             if (loginResult.error != null) {
                 showLoginFailed(loginResult.error)
             }
+            // Update UI with logged in user information if login was successful
             if (loginResult.success != null) {
                 updateUiWithUser(loginResult.success)
             }
             setResult(Activity.RESULT_OK)
 
-            //Complete and destroy login activity once successful
+            // Complete and destroy login activity once successful
             finish()
         })
 
+        // Update login form state and login when username or password fields change
         username.afterTextChanged {
             loginViewModel.loginDataChanged(
                 username.text.toString(),
@@ -102,10 +110,11 @@ class LoginActivity : AppCompatActivity() {
                 }
                 false
             }
-
+            // Log user in when login button is clicked
             login.setOnClickListener {
                 loading.visibility = View.VISIBLE
                 val logged_user = loginViewModel.login(username.text.toString(), password.text.toString(), dbReader)
+                // Start MainActivity with logged in user information if login was successful
                 if (logged_user.username != ""){
                     val intent = Intent(this@LoginActivity, MainActivity::class.java)
                     intent.putExtra("logged_user", logged_user)
@@ -129,7 +138,7 @@ class LoginActivity : AppCompatActivity() {
         val displayName = model.displayName
 
 
-
+        // Show a toast with the welcome message and the user's display name
         Toast.makeText(
             applicationContext,
             "$welcome $displayName",
@@ -138,6 +147,7 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun showLoginFailed(@StringRes errorString: Int) {
+        // Show a toast with the login failed message
         Toast.makeText(applicationContext, errorString, Toast.LENGTH_SHORT).show()
     }
 }

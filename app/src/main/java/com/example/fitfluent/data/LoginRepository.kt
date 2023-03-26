@@ -13,31 +13,37 @@ class LoginRepository(val dataSource: LoginDataSource) {
     public var user: User? = null
         private set
 
+    // Check if user is logged in
     val isLoggedIn: Boolean
         get() = user != null
 
     init {
         // If user credentials will be cached in local storage, it is recommended it be encrypted
         // @see https://developer.android.com/training/articles/keystore
+        // Initialize user to null
         user = null
     }
 
+    // Log out user and revoke authentication
     fun logout() {
         user = null
         dataSource.logout()
     }
 
+    // Handle login
     fun login(username: String, password: String, dbReader: DatabaseReader): User {
-        // handle login
+        // Call login function of dataSource
         val result = dataSource.login(username, password, dbReader)
+        // Set the loggedInUser object in memory
 
 
         setLoggedInUser(result)
 
-
+        // Return the loggedInUser object
         return result
     }
 
+    // Set the loggedInUser object in memory
     private fun setLoggedInUser(loggedInUser: User) {
         this.user = loggedInUser
         // If user credentials will be cached in local storage, it is recommended it be encrypted

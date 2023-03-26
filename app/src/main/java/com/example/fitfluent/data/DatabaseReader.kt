@@ -28,6 +28,7 @@ class DatabaseReader(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME
 
     }
 
+    // This function is called when the database is created for the first time.
     override fun onCreate(p0: SQLiteDatabase?) {
         if(!tableExists(p0)){
             val createTable = ("CREATE TABLE " + TABLE + "(" + USERNAME + " TEXT PRIMARY KEY, " + PASSWORD + " TEXT, " + AGE + " INTEGER, " + HEIGHT + " INTEGER, "
@@ -51,11 +52,13 @@ class DatabaseReader(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME
         }
     }
 
+    // This function is called when the database needs to be upgraded.
     override fun onUpgrade(p0: SQLiteDatabase?, p1: Int, p2: Int) {
         p0!!.execSQL("DROP TABLE IF EXISTS $TABLE")
         onCreate(p0)
     }
 
+    // This function is used to insert a new user into the database.
     fun register_person(user: User): Long {
 
         val db = writableDatabase
