@@ -155,9 +155,10 @@ class WorkoutFragment() : Fragment() {
 
         //###############
 
+        var workoutsUebergabe = mainActivity.getWorkouts(user)
+        workoutsUebergabe.removeAt(0)
 
-
-        workoutList.addAll(mainActivity.getWorkouts(user))
+        workoutList.addAll(workoutsUebergabe)
 
         binding.WorkoutList.layoutManager = LinearLayoutManager(context, RecyclerView.VERTICAL, false)
         binding.WorkoutList.adapter = workoutAdapter
