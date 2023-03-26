@@ -96,5 +96,7 @@ class DatabaseReaderExercises (context: Context) : SQLiteOpenHelper(context, Dat
 
         return exerciseList
     }
+
+
 }
 

@@ -143,4 +143,9 @@ class DatabaseReaderWorkouts(context: Context) : SQLiteOpenHelper(context,
         return workoutList
     }
 
+    fun dropDB(){
+        val db = this.writableDatabase
+        db.execSQL("DROP TABLE ${TABLE}")
+    }
+
 }

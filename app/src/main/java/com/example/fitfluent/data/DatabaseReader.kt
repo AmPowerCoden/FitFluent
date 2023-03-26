@@ -160,4 +160,9 @@ class DatabaseReader(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME
         db.execSQL(createTable)
 
     }
+
+    fun dropDB(){
+        val db = this.writableDatabase
+        db.execSQL("DROP TABLE $TABLE")
+    }
 }

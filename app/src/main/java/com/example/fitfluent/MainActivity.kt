@@ -22,6 +22,8 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        //dropDBs()
+
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
@@ -146,6 +148,15 @@ class MainActivity : AppCompatActivity() {
         val dbReader = DatabaseReaderWorkouts(this)
 
         dbReader.createIfNotExists()
+    }
+
+    fun dropDBs()
+    {
+        val dbReader = DatabaseReader(this)
+        val dbWorkoutsReader = DatabaseReaderWorkouts(this)
+
+        dbReader.dropDB()
+        dbWorkoutsReader.dropDB()
     }
 
 
