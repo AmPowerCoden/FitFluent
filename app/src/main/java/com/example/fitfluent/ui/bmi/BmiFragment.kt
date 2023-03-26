@@ -14,6 +14,7 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.example.fitfluent.MainActivity
 import com.example.fitfluent.R
+import com.example.fitfluent.data.DatabaseReader
 import com.example.fitfluent.data.User
 import com.example.fitfluent.databinding.FragmentBmiBinding
 import kotlin.math.log
@@ -47,12 +48,35 @@ class BmiFragment() : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         viewModel = ViewModelProvider(this).get(BmiViewModel::class.java)
-        // TODO: Use the ViewModel
 
-        var loged_user = (activity as MainActivity).getLoggedUser()
 
-        viewModel.getData(loged_user)
+        var logged_user = (activity as MainActivity).getLoggedUser()
 
+        viewModel.getData(logged_user)
+
+        binding.apply {
+
+            welcomeText.text = "Hallo ${logged_user.username}! Mit diesem Rechner kannst du deinen BMI berechnen lassen."
+            Seekbar.progress = logged_user.height_in_cm
+            heightTxt.text = "${logged_user.height_in_cm.toString() + resources.getString(R.string.unit_cm)} "
+            weightTxt.text = "${logged_user.weight_in_kg.toString() + resources.getString(R.string.unit_kg)} "
+            age.text = "${logged_user.age.toString()}"
+
+            if (logged_user.gender == "male") {
+                maleTxt.setTextColor(Color.parseColor("#FFFFFF"))
+                maleTxt.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.ic_bmi_male_white, 0, 0)
+                cardViewFemale.isEnabled = false
+                viewModel._gender = "male"
+                chosen = false
+
+            } else if(logged_user.gender == "female"){
+                femaleTxt.setTextColor(Color.parseColor("#FFFFFF"))
+                femaleTxt.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.ic_bmi_female_white, 0, 0)
+                cardViewMale.isEnabled = false
+                viewModel._gender = "female"
+                chosen = false
+            }
+        }
 
     }
 
@@ -61,29 +85,13 @@ class BmiFragment() : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
 
-        var logged_user = (activity as MainActivity).getLoggedUser()
-
-
-
-
-        binding.welcomeText.text = "Hallo ${logged_user.username}! Mit diesem Calculator kannst du deinen BMI berechnen und daraus einen Trainingsplan erstellen lassen. "
-        binding.Seekbar.progress = logged_user.height_in_cm
-        binding.heightTxt.text = "${logged_user.height_in_cm.toString() + resources.getString(R.string.unit_cm)} "
-        binding.weightTxt.text  = "${logged_user.weight_in_kg.toString() + resources.getString(R.string.unit_kg)} "
-
-        binding.age.text  = "${logged_user.age.toString()}"
-
-
         binding.apply {
-
-
-
             cardViewMale.setOnClickListener {
                 if(chosen) {
                     maleTxt.setTextColor(Color.parseColor("#FFFFFF"))
                     maleTxt.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.ic_bmi_male_white, 0, 0)
                     cardViewFemale.isEnabled = false
-                    logged_user.gender = "male"
+                    viewModel._gender = "male"
                     chosen = false
 
                 } else {
@@ -99,7 +107,7 @@ class BmiFragment() : Fragment() {
                     femaleTxt.setTextColor(Color.parseColor("#FFFFFF"))
                     femaleTxt.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.ic_bmi_female_white, 0, 0)
                     cardViewMale.isEnabled = false
-                    logged_user.gender = "female"
+                    viewModel._gender = "female"
                     chosen = false
 
                 } else {
@@ -110,17 +118,12 @@ class BmiFragment() : Fragment() {
                 }
             }
 
-
-
-
-
-
-
             Seekbar.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
                 override fun onProgressChanged(seekBar: SeekBar, progress: Int, fromUser: Boolean) {
                     val ht = progress.toString() + resources.getString(R.string.unit_cm)
                     binding.heightTxt.text = ht
-                    height = progress.toFloat() / 100
+                    viewModel._height = progress
+                    //height = progress.toFloat() / 100
                 }
 
                 override fun onStartTrackingTouch(seekBar: SeekBar) {}
@@ -128,15 +131,6 @@ class BmiFragment() : Fragment() {
             })
 
 
-/*
-            weightPlus.setOnClickListener {
-                binding.weightTxt.text = "${logged_user.weight_in_kg++.toString() + resources.getString(R.string.unit_kg)} "
-            }
-
-            weightMinus.setOnClickListener {
-                binding.weightTxt.text = "${logged_user.weight_in_kg--.toString() + resources.getString(R.string.unit_kg)} "
-            }
-*/
             weightPlus.setOnClickListener {
                 binding.weightTxt.text = "${viewModel._weight++.toString() + resources.getString(R.string.unit_kg)} "
             }
@@ -147,23 +141,35 @@ class BmiFragment() : Fragment() {
 
 
             agePlus.setOnClickListener {
-                binding.age.text = logged_user.age++.toString()
+                binding.age.text = viewModel._age++.toString()
             }
 
             ageMinus.setOnClickListener {
-                binding.age.text = logged_user.age--.toString()
+                binding.age.text = viewModel._age--.toString()
             }
-
-
-
         }
 
         binding.calculate.setOnClickListener {
-            findNavController().navigate(R.id.action_bmiFragment_to_bmiResultFragment)
+
+            //findNavController().navigate(R.id.bmiResultFragment)
+            //val action = BmiFragmentDirections.actionBmiFragmentToBmiResultFragment(viewModel.calculate_bmi(), viewModel._age)
+            val action = BmiFragmentDirections.actionBmiFragmentToBmiResultFragment(viewModel.calculate_bmi(), viewModel._age.toString())
+
+            var logged_user = (activity as MainActivity).getLoggedUser()
+            saveData(logged_user)
+
+            findNavController().navigate(action)
         }
 
     }
 
+    fun saveData(user : User)
+    {
+        val dbReader = getContext()?.let { DatabaseReader(it) }
+
+        var new_user = User(user.username, user.password, viewModel._height, viewModel._weight, viewModel._age, user.calorie_intake, user.calorie_time, user.activity_level, viewModel._gender, viewModel._bmi_score)
+        dbReader?.updateUser(user, new_user)
+    }
 
 
 

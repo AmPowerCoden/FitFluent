@@ -13,17 +13,12 @@ import android.view.View
 import android.view.inputmethod.EditorInfo
 import android.widget.EditText
 import android.widget.Toast
-import androidx.navigation.findNavController
-import androidx.navigation.ui.AppBarConfiguration
-import androidx.navigation.ui.setupActionBarWithNavController
-import androidx.navigation.ui.setupWithNavController
 import com.example.fitfluent.MainActivity
 import com.example.fitfluent.databinding.ActivityLoginBinding
 
 import com.example.fitfluent.R
 import com.example.fitfluent.Register_Activity
 import com.example.fitfluent.data.DatabaseReader
-import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class LoginActivity : AppCompatActivity() {
 

@@ -4,22 +4,18 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.navigation.findNavController
 import androidx.navigation.ui.setupWithNavController
+import com.example.fitfluent.data.User
 import com.example.fitfluent.databinding.ActivityMainBinding
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.AppBarConfiguration
-import com.example.fitfluent.data.*
-import com.example.fitfluent.ui.bmi.BmiFragment
-import com.example.fitfluent.ui.exercise.ExerciseFragment
-import com.example.fitfluent.ui.food.FoodFragment
-import com.example.fitfluent.ui.workout.WorkoutFragment
+import com.example.fitfluent.data.DatabaseReader
+import com.example.fitfluent.data.DatabaseReaderWorkouts
+import com.example.fitfluent.data.Workout
 import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.suspendCancellableCoroutine
 import okhttp3.*
 import java.io.IOException
-import java.net.HttpURLConnection
-import java.net.URL
-import java.time.LocalDateTime
 import kotlin.coroutines.resume
 import kotlin.coroutines.resumeWithException
 
@@ -109,20 +105,13 @@ class MainActivity : AppCompatActivity() {
     {
         val dbReaderWorkouts =DatabaseReaderWorkouts(this)
 
-        return dbReaderWorkouts.getWorkouts(user.username)
+        return dbReaderWorkouts.getWorkouts(user)
     }
 
     fun registerWorkout (workout: Workout){
         val dbReaderWorkouts = DatabaseReaderWorkouts(this)
 
         dbReaderWorkouts.registerWorkout(workout)
-    }
-
-    fun getExercises () : MutableList<Exercise>
-    {
-        val DatabaseReaderExercises =DatabaseReaderExercises(this)
-
-        return DatabaseReaderExercises.getExercises()
     }
 
 
@@ -146,6 +135,13 @@ class MainActivity : AppCompatActivity() {
                 // Ignore cancel exception
             }
         }
+    }
+
+    fun createWorkoutDb()
+    {
+        val dbReader = DatabaseReaderWorkouts(this)
+
+        dbReader.createIfNotExists()
     }
 
 

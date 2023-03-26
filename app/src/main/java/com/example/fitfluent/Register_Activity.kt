@@ -3,6 +3,7 @@ package com.example.fitfluent
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.provider.ContactsContract.Data
 import android.view.View
 import com.example.fitfluent.data.DatabaseReader
 import com.example.fitfluent.data.User
@@ -29,6 +30,8 @@ class Register_Activity : AppCompatActivity() {
         val register_error = binding.registerError
 
         register_error.visibility = View.INVISIBLE
+
+        //dbReader.recreateDB()
 
 
         register.isEnabled = true

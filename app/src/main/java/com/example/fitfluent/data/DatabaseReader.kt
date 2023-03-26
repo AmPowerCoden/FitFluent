@@ -5,6 +5,7 @@ import android.content.Context
 import android.database.Cursor
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
+import com.example.fitfluent.MainActivity
 import java.time.LocalDateTime
 
 class DatabaseReader(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME, null, DATABASE_VERSION){
@@ -137,7 +138,7 @@ class DatabaseReader(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME
         contentValues.put(GENDER, newuser.gender)
         contentValues.put(BMI_SCORE, newuser.bmi_score)
 
-        val sql = "UPDATE $TABLE SET $AGE = ${newuser.age}, $HEIGHT = ${newuser.height_in_cm}, $WEIGHT = ${newuser.weight_in_kg}, $CALORIE_INTAKE = ${newuser.calorie_intake}, $CALORIE_TIME = '${LocalDateTime.now().toString()}' WHERE $USERNAME = '${olduser.username}'"
+        val sql = "UPDATE $TABLE SET $AGE = ${newuser.age}, $HEIGHT = ${newuser.height_in_cm}, $WEIGHT = ${newuser.weight_in_kg}, $CALORIE_INTAKE = ${newuser.calorie_intake}, $CALORIE_TIME = '${LocalDateTime.now().toString()}', $GENDER = '${newuser.gender}', $BMI_SCORE = '${newuser.bmi_score}' WHERE $USERNAME = '${olduser.username}'"
 
         //val selection = "$USERNAME = ? AND $PASSWORD = ? AND $AGE = ? AND $HEIGHT = ? AND $WEIGHT = ? AND $CALORIE_INTAKE = ? AND $CALORIE_TIME = ?"
         //val selectionArgs = arrayOf(olduser.username, olduser.password, olduser.age.toString(), olduser.height_in_cm.toString(), olduser.weight_in_kg.toString(), olduser.calorie_intake.toString(), olduser.calorie_time)
@@ -146,6 +147,17 @@ class DatabaseReader(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME
         db.execSQL(sql)
         db.close()
 
+
+    }
+
+    fun recreateDB(){
+        val db = this.writableDatabase
+
+        val createTable = ("CREATE TABLE " + TABLE + "(" + USERNAME + " TEXT PRIMARY KEY, " + PASSWORD + " TEXT, " + AGE + " INTEGER, " + HEIGHT + " INTEGER, "
+                + WEIGHT + " INTEGER, " + CALORIE_INTAKE + " INTEGER, " + CALORIE_TIME + " TEXT, " + ACTIVITY_LEVEL + " FLOAT, " + GENDER + " TEXT, "
+                + BMI_SCORE + " FLOAT)" )
+        db.execSQL("DROP TABLE " + TABLE)
+        db.execSQL(createTable)
 
     }
 }

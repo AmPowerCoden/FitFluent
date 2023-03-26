@@ -14,7 +14,7 @@
         android:layout_margin="16dp"
         android:layout_marginEnd="16dp"
         android:text="@string/your_result"
-        android:textColor="@android:color/white"
+        android:textColor="@android:color/black"
         android:textSize="30sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/result_card"
@@ -71,10 +71,11 @@
                 android:textStyle="bold" />
 
             <TextView
+                android:id="@+id/txt_normal_bmiRange"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
-                android:text="TODO"
+                android:text="18.5 - 25 kg/m²"
                 android:textColor="@android:color/white"
                 android:textSize="18sp" />
 
@@ -100,7 +101,8 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="5dp"
                     android:textColor="@android:color/white"
-                    android:textSize="20sp" />
+                    android:textSize="25sp"
+                    android:textStyle="bold" />
 
             </LinearLayout>
 
@@ -111,22 +113,40 @@
     <androidx.cardview.widget.CardView
         android:id="@+id/sug_container"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="115dp"
         android:layout_marginLeft="16dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="24dp"
         android:layout_marginRight="16dp"
-        app:cardCornerRadius="10sp"
         app:cardBackgroundColor="@color/card_background"
+        app:cardCornerRadius="10sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/result_card">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:padding="20dp">
+
+
+        <TextView
+            android:id="@+id/tv_suggestion"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/suggestion"
+            android:textColor="@color/colorAccent"
+            android:textSize="20sp"
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/suggestion"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:padding="20sp"/>
+            android:padding="20sp" />
 
+            </LinearLayout>
     </androidx.cardview.widget.CardView>
 
 
@@ -134,16 +154,33 @@
         android:id="@+id/recalculate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="68dp"
-        android:layout_marginBottom="32dp"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="52dp"
+        android:layout_marginEnd="60dp"
         android:background="@drawable/bmi_result_rahmen"
         android:contentDescription="@string/recalculate"
         android:padding="15dp"
         android:src="@drawable/ic_bmi_refresh"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.829"
+        app:layout_constraintStart_toEndOf="@+id/saveData"
         app:layout_constraintTop_toBottomOf="@+id/sug_container"
-        app:layout_constraintVertical_bias="0.869"
+        app:shapeAppearanceOverlay="@style/circleImageView" />
+
+    <TextView
+        android:id="@+id/saveData"
+        android:layout_width="121dp"
+        android:layout_height="54dp"
+        android:layout_marginStart="44dp"
+        android:layout_marginTop="52dp"
+        android:background="@drawable/bmi_result_rahmen"
+        android:text="@string/saveData"
+        android:textAlignment="center"
+        android:textColor="@android:color/black"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/sug_container"
         app:shapeAppearanceOverlay="@style/circleImageView" />
 
 
