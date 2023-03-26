@@ -111,6 +111,7 @@ class DatabaseReaderWorkouts(context: Context) : SQLiteOpenHelper(context,
 
         val db = this.readableDatabase
 
+
         val query = "SELECT * FROM ${DatabaseReaderWorkouts.TABLE} WHERE $ERSTELLER = 'auto' OR $ERSTELLER = '${user.username}'"
 
         val cursor: Cursor?

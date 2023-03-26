@@ -110,77 +110,20 @@
 
     </androidx.cardview.widget.CardView>
 
-    <androidx.cardview.widget.CardView
-        android:id="@+id/sug_container"
-        android:layout_width="match_parent"
-        android:layout_height="115dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginTop="24dp"
-        android:layout_marginRight="16dp"
-        app:cardBackgroundColor="@color/card_background"
-        app:cardCornerRadius="10sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/result_card">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:orientation="vertical"
-            android:padding="20dp">
-
-
-        <TextView
-            android:id="@+id/tv_suggestion"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/suggestion"
-            android:textColor="@color/colorAccent"
-            android:textSize="20sp"
-            android:textStyle="bold" />
-
-        <TextView
-            android:id="@+id/suggestion"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:padding="20sp" />
-
-            </LinearLayout>
-    </androidx.cardview.widget.CardView>
-
 
     <ImageView
         android:id="@+id/recalculate"
-        android:layout_width="wrap_content"
+        android:layout_width="150dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="50dp"
-        android:layout_marginTop="52dp"
-        android:layout_marginEnd="60dp"
+        android:layout_marginTop="80dp"
         android:background="@drawable/bmi_result_rahmen"
         android:contentDescription="@string/recalculate"
         android:padding="15dp"
         android:src="@drawable/ic_bmi_refresh"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.829"
-        app:layout_constraintStart_toEndOf="@+id/saveData"
-        app:layout_constraintTop_toBottomOf="@+id/sug_container"
-        app:shapeAppearanceOverlay="@style/circleImageView" />
-
-    <TextView
-        android:id="@+id/saveData"
-        android:layout_width="121dp"
-        android:layout_height="54dp"
-        android:layout_marginStart="44dp"
-        android:layout_marginTop="52dp"
-        android:background="@drawable/bmi_result_rahmen"
-        android:text="@string/saveData"
-        android:textAlignment="center"
-        android:textColor="@android:color/black"
-        android:textSize="20sp"
-        android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/sug_container"
+        app:layout_constraintTop_toBottomOf="@+id/result_card"
         app:shapeAppearanceOverlay="@style/circleImageView" />
 
 

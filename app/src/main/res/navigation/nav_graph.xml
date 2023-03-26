@@ -28,17 +28,17 @@
     <fragment
         android:id="@+id/foodFragment"
         android:name="com.example.fitfluent.ui.food.FoodFragment"
-        android:label="fragment_food"
+        android:label="Calorien-Tracker"
         tools:layout="@layout/fragment_food" />
     <fragment
         android:id="@+id/exerciseFragment"
         android:name="com.example.fitfluent.ui.exercise.ExerciseFragment"
-        android:label="fragment_exercise"
+        android:label="Wissensdatenbank"
         tools:layout="@layout/fragment_exercise" />
     <fragment
         android:id="@+id/workoutFragment"
         android:name="com.example.fitfluent.ui.workout.WorkoutFragment"
-        android:label="fragment_workout"
+        android:label="Trainingsplan"
         tools:layout="@layout/fragment_workout" />
     <fragment
         android:id="@+id/bmiResultFragment"

@@ -49,8 +49,7 @@
     <string name="your_age">Dein Alter:</string>
     <string name="normal_bmi_range">Normaler BMI-Range:</string>
     <string name="your_result">Dein Ergebnis:</string>
-    <string name="saveData">Speichere Daten</string>
-    <string name="suggestion">Vorschlag</string>
+
 
     <!-- String fot the Workouts Fragment -->
     <string name="workout_heading">Hier sind Ihre Workouts</string>

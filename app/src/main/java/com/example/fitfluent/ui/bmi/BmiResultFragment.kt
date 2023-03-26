@@ -30,15 +30,15 @@ class BmiResultFragment : Fragment() {
         return binding.root
     }
 
-/*
+
     companion object {
         fun newInstance(bundle: Bundle) = BmiResultFragment()
     }
-*/
+
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        //viewModel = ViewModelProvider(this).get(BmiViewModel::class.java)
+
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -46,24 +46,25 @@ class BmiResultFragment : Fragment() {
 
 
 
-
-        binding.yourBmi.text = "${args.bmi.toString() + resources.getString(R.string.unit_kgm2)} "
-        binding.ageTxt.text = args.age
-
-
-        var result = Calculation.checkAdult(args.age.toInt(), args.bmi)
-        binding.condition.text = "${result}"
+        binding.apply{
+            yourBmi.text = "${args.bmi.toString() + resources.getString(R.string.unit_kgm2)} "
+            ageTxt.text = args.age
 
 
+            var result = Calculation.checkAdult(args.age.toInt(), args.bmi)
+            condition.text = "${result}"
 
-        binding.recalculate.setOnClickListener {
 
-            findNavController().navigate(R.id.action_bmiResultFragment_to_bmiFragment)
 
+
+
+
+            recalculate.setOnClickListener {
+                findNavController().navigate(R.id.action_bmiResultFragment_to_bmiFragment)
+            }
 
         }
     }
-
 
 
     override fun onDestroyView() {

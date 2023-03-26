@@ -40,6 +40,7 @@ class WorkoutFragment() : Fragment() {
 
         mainActivity.createWorkoutDb()
 
+        mainActivity.registerWorkout(Workout("auto", "wiederholung", "klimmzug, liegestütze, dips", "10, 12, 10", "Montag, Mittwoch, Freitag", "18 - 25" ))
         val workouts = mainActivity.getWorkouts(user)
 
 

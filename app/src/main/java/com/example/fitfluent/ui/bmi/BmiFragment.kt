@@ -25,6 +25,7 @@ class BmiFragment() : Fragment() {
     private val binding get() = _binding!!
     private lateinit var viewModel: BmiViewModel
 
+
     var height: Float? = null
     private var chosen: Boolean = true
 
@@ -51,7 +52,6 @@ class BmiFragment() : Fragment() {
 
 
         var logged_user = (activity as MainActivity).getLoggedUser()
-
         viewModel.getData(logged_user)
 
         binding.apply {
@@ -123,7 +123,7 @@ class BmiFragment() : Fragment() {
                     val ht = progress.toString() + resources.getString(R.string.unit_cm)
                     binding.heightTxt.text = ht
                     viewModel._height = progress
-                    //height = progress.toFloat() / 100
+
                 }
 
                 override fun onStartTrackingTouch(seekBar: SeekBar) {}
@@ -151,8 +151,6 @@ class BmiFragment() : Fragment() {
 
         binding.calculate.setOnClickListener {
 
-            //findNavController().navigate(R.id.bmiResultFragment)
-            //val action = BmiFragmentDirections.actionBmiFragmentToBmiResultFragment(viewModel.calculate_bmi(), viewModel._age)
             val action = BmiFragmentDirections.actionBmiFragmentToBmiResultFragment(viewModel.calculate_bmi(), viewModel._age.toString())
 
             var logged_user = (activity as MainActivity).getLoggedUser()
@@ -177,11 +175,5 @@ class BmiFragment() : Fragment() {
         super.onDestroyView()
         _binding = null
     }
-
-
-
-
-
-
 
 }

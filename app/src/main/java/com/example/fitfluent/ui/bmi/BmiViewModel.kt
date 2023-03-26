@@ -12,7 +12,6 @@ class BmiViewModel : ViewModel() {
     var _weight = 0
     var _height  = 0
     var _age = 0
-
     var _bmi_score = 0F
 
 
