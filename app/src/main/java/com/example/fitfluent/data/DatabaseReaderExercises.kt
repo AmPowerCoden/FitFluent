@@ -5,6 +5,9 @@ import android.content.Context
 import android.database.Cursor
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
+import java.io.FileInputStream
+import org.apache.poi.ss.usermodel.WorkbookFactory
+import org.apache.poi.xssf.usermodel.XSSFWorkbook
 
 class DatabaseReaderExercises (context: Context) : SQLiteOpenHelper(context, DatabaseReaderExercises.DATABASE_NAME, null, DatabaseReaderExercises.DATABASE_VERSION)
 {
@@ -35,8 +38,12 @@ class DatabaseReaderExercises (context: Context) : SQLiteOpenHelper(context, Dat
             contentValues.put(DatabaseReaderExercises.IMAGE, "Bildtext")
             contentValues.put(DatabaseReaderExercises.VIDEO, "video.de")
 
+            registerExercise("Squats","Beine schulterbreit aufstellen und mit geradem Rücken nach unten gehen, bis die Knie im 90 Grad Winkel sind. Arme dabei vor dem Körper halten. Kurz verweilen und langsam wieder aufstehen.","Kein Zusatzmaterial","Squats","test")
+
+
             val success = p0?.insert(DatabaseReaderExercises.TABLE, null, contentValues)
         }
+
     }
 
     // Upgrade the database table if the version has changed
@@ -62,17 +69,17 @@ class DatabaseReaderExercises (context: Context) : SQLiteOpenHelper(context, Dat
     }
 
     // Insert a new exercise into the database
-    fun registerExercise(exercise: Exercise) : Long{
+    fun registerExercise(name: String, description: String, material: String, image: String, video: String ) : Long{
 
         val db = this.writableDatabase
 
         // Create a new ContentValues object and set the values
         val contentValues = ContentValues()
-        contentValues.put(DatabaseReaderExercises.NAME, exercise.name)
-        contentValues.put(DatabaseReaderExercises.DESCRIPTION, exercise.description)
-        contentValues.put(DatabaseReaderExercises.MATERIAL, exercise.material)
-        contentValues.put(DatabaseReaderExercises.IMAGE, exercise.image)
-        contentValues.put(DatabaseReaderExercises.VIDEO, exercise.video)
+        contentValues.put(DatabaseReaderExercises.NAME, name)
+        contentValues.put(DatabaseReaderExercises.DESCRIPTION, description)
+        contentValues.put(DatabaseReaderExercises.MATERIAL, material)
+        contentValues.put(DatabaseReaderExercises.IMAGE, image)
+        contentValues.put(DatabaseReaderExercises.VIDEO, video)
 
         // Insert the exercise into the database and return the success indicator
         val success = db.insert(DatabaseReaderExercises.TABLE, null, contentValues)
@@ -107,6 +114,58 @@ class DatabaseReaderExercises (context: Context) : SQLiteOpenHelper(context, Dat
         } while (cursor.moveToNext())
 
         return exerciseList
+    }
+
+    fun readFromExcelFile(filepath: String){
+        val inputStream = FileInputStream(filepath)
+        //Instantiate Excel workbook using existing file:
+        var xlWb = WorkbookFactory.create(inputStream)
+
+        //Row index specifies the row in the worksheet (starting at 0):
+        val rowNumber = 0
+        //Cell index specifies the column within the chosen row (starting at 0):
+        val columnNumber = 0
+
+        //Get reference to first sheet:
+        val xlWs = xlWb.getSheetAt(0)
+        println(xlWs.getRow(rowNumber).getCell(columnNumber))
+    }
+
+    fun fromExcelToDb (){
+        val inputStream = FileInputStream("./exercises.xlsx")
+        var xlWb = WorkbookFactory.create(inputStream)
+        val xlWs = xlWb.getSheetAt(0)
+
+        for (r in 2..19){
+            var exercise = Exercise()
+            for (c in 0..4){
+                val value = xlWs.getRow(r).getCell(c)
+
+                if (c == 0)
+                {
+                    exercise.name = (value.toString())
+                }
+                if (c == 1)
+                {
+                    exercise.description = (value.toString())
+                }
+                if (c == 2)
+                {
+                    exercise.material = (value.toString())
+                }
+                if (c == 3)
+                {
+                    exercise.image = (value.toString())
+                }
+                if (c == 4)
+                {
+                    exercise.video = (value.toString())
+                }
+            }
+            //registerExercise(exercise)
+
+        }
+        xlWb.close()
     }
 
 

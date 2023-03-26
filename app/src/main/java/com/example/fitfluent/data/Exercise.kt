@@ -1,9 +1,9 @@
 package com.example.fitfluent.data
 
 data class Exercise (
-    val name : String,
-    val description : String,
-    val material : String,
-    val image : String,
-    val video : String )
+    var name : String = "",
+    var description : String= "",
+    var material : String= "",
+    var image : String= "",
+    var video : String = "")
 {}
