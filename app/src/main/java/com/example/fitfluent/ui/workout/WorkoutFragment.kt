@@ -17,8 +17,10 @@ import com.example.fitfluent.databinding.FragmentWorkoutBinding
 
 class WorkoutFragment() : Fragment() {
 
+    // View binding variable
     private var _binding: FragmentWorkoutBinding? = null
     private val binding get() = _binding!!
+    // List of workouts and adapter for recycler view
     private var workoutList: MutableList<Workout> = mutableListOf()
     private val workoutAdapter = WorkoutAdapter(workoutList)
 
@@ -32,18 +34,20 @@ class WorkoutFragment() : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        // Inflate view using view binding
         _binding = FragmentWorkoutBinding.inflate(inflater, container, false)
 
+        // Get activity and logged user
         val mainActivity = activity as MainActivity
-
         val user = mainActivity.getLoggedUser()
 
+        // Create workout database
         mainActivity.createWorkoutDb()
 
-        mainActivity.registerWorkout(Workout("auto", "wiederholung", "klimmzug, liegestütze, dips", "10, 12, 10", "Montag, Mittwoch, Freitag", "18 - 25" ))
+        // Get workouts for the user
         val workouts = mainActivity.getWorkouts(user)
 
-
+        // Display appropriate message if user's BMI score is 0
         if(workouts.size != 0)
         {
             workouts.removeAt(0)
@@ -55,7 +59,7 @@ class WorkoutFragment() : Fragment() {
         }
         else{
 
-
+            // Count the number of workouts created by "auto" and add default workouts if necessary
             var counter = 0
 
             workouts.forEach {
@@ -115,6 +119,7 @@ class WorkoutFragment() : Fragment() {
 
             }
 
+            // Get workouts for the user (after adding default workouts if necessary)
             var workoutsUebergabe = mainActivity.getWorkouts(user)
             workoutsUebergabe.removeAt(0)
 
