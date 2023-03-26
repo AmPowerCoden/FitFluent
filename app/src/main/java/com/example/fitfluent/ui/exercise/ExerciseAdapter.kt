@@ -28,10 +28,13 @@ class ExerciseAdapter(val exerciseList: List<Exercise>) : RecyclerView.Adapter<E
         // Get the name of the Exercise object
         val name = c.name
         val description = c.description
+        val image = c.image
+
 
         // Set the text of the exerciseHeading view of the binding to the name of the Exercise object
         holder.binding.exerciseHeading.text = c.name
         holder.binding.exerciseDescription.text = c.description
+
     }
 
     // getItemCount function that returns the size of the exerciseList
