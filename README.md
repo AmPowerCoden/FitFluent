@@ -36,6 +36,6 @@ The workout tap will provide you with your personalized workout created for your
 
 ## Known Issues and how to deal with them:
 
-- Die Food-API kann aus technischen, bzw. kostentechnischen Gründen nur mit englischen Wörtern gefüttert werden. Dementsprechend können nur Gerichte in englischer Wortform zum Kalorienverbrauch oder für den Tagesbedarf berücksichtigt werden, da die API in deutscher Sprache eine monatliche Gebühr von 70$ hervorrufen würde. Aus diesem Grund haben wir uns entschieden die Gerichte nur in englisch auszuwählen, da dies den Ramen der Entwicklung gesprengt hätte. Dies hat allerdings keine funtionalen Einbußen mitgebracht, denn alle Funktionen sind verfügbar, nur wben die Sprache nicht.
+- Die Food-API kann aus technischen, bzw. kostentechnischen Gründen nur mit englischen Wörtern gefüttert werden. Dementsprechend können nur Gerichte in englischer Wortform zum Kalorienverbrauch oder für den Tagesbedarf berücksichtigt werden, da die API in deutscher Sprache eine monatliche Gebühr von 70$ hervorrufen würde. Aus diesem Grund haben wir uns entschieden die Gerichte nur in englisch auszuwählen, da dies den Ramen der Entwicklung gesprengt hätte. Dies hat allerdings keine funtionalen Einbußen mitgebracht, denn alle Funktionen sind verfügbar, nur eben die Sprache nicht.
 
 - Sollte beim Login der falsche UserName opder ein falsches Passwort verwendet werden hat dies leider den Absturz der App zufolge.
