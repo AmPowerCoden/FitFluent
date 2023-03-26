@@ -33,11 +33,11 @@ class BmiResultFragment : Fragment() {
         return binding.root
     }
 
-/*
+
     companion object {
         fun newInstance(bundle: Bundle) = BmiResultFragment()
     }
-*/
+
 
     // This method is called when the activity's onCreate() method has returned.
     // It sets up any necessary resources for the fragment.
@@ -52,24 +52,25 @@ class BmiResultFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
 
+        binding.apply{
+            // Set the BMI result text and age text based on the arguments passed to the fragment.
+            yourBmi.text = "${args.bmi.toString() + resources.getString(R.string.unit_kgm2)} "
+            ageTxt.text = args.age
 
-        // Set the BMI result text and age text based on the arguments passed to the fragment.
-        binding.yourBmi.text = "${args.bmi.toString() + resources.getString(R.string.unit_kgm2)} "
-        binding.ageTxt.text = args.age
-
-        // Check the BMI result and age to determine the BMI category and set the category text.
-        var result = Calculation.checkAdult(args.age.toInt(), args.bmi)
-        binding.condition.text = "${result}"
-
-
-        // Set the click listener for the "Recalculate" button.
-        // It navigates to the BMI input fragment to allow the user to recalculate their BMI.
-        binding.recalculate.setOnClickListener {
-
-            findNavController().navigate(R.id.action_bmiResultFragment_to_bmiFragment)
+            // Check the BMI result and age to determine the BMI category and set the category text.
+            var result = Calculation.checkAdult(args.age.toInt(), args.bmi)
+            condition.text = "${result}"
 
 
+            // Set the click listener for the "Recalculate" button.
+            // It navigates to the BMI input fragment to allow the user to recalculate their BMI.
+            recalculate.setOnClickListener {
+
+                findNavController().navigate(R.id.action_bmiResultFragment_to_bmiFragment)
+            }
         }
+
+
     }
 
 

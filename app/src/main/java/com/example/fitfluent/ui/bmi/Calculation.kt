@@ -68,24 +68,5 @@ object Calculation {
         return category
     }
 
-    // Provide general advice based on a given result
-    fun getSuggestions(result: Float): String {
-        // Use a when expression to provide advice based on the result
-        val suggestion: String = when {
-            result < 18.5 -> {
-                "A BMI of under 18.5 indicates that a person has insufficient weight, so they may need to put on some weight. They should ask a doctor or dietitian for advice."
-            }
-            result in 18.5..24.9 -> {
-                "A BMI of 18.5–24.9 indicates that a person has a healthy weight for their height. By maintaining a healthy weight, they can lower their risk of developing serious health problems."
-            }
-            result < 25 && result >=29.9 -> {
-                "A BMI of 25–29.9 indicates that a person is slightly overweight. A doctor may advise them to lose some weight for health reasons. They should talk with a doctor or dietitian for advice."
-            }
-            else -> {
-                "A BMI of over 30 indicates that a person has obesity. Their health may be at risk if they do not lose weight. They should talk with a doctor or dietitian for advice."
-            }
-        }
-        // Return the suggestion as a string
-        return suggestion
-    }
+
 }
