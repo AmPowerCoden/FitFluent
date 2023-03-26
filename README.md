@@ -5,7 +5,7 @@ Your App to manage your Workouts and track your nutrition to keep the balance be
 FitFluent is an educational driven development started from 4 guys that are interested in sport, health and fitness!
 We love sport and we will guide your throgh your workout with interesting and inovativ workouts for you. 
 Trying to motivate you for sport and give you the chance to do workouts from home without visiting any gym.
-So we are hyperd to get you hyped!
+So we are hyped to get you hyped!
 
 Enough from us. Let us talk more about our app down below.
 
