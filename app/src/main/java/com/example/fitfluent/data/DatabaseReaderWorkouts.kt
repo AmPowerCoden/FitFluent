@@ -65,8 +65,8 @@ class DatabaseReaderWorkouts(context: Context) : SQLiteOpenHelper(context,
     fun createIfNotExists() {
         val db = this.writableDatabase
 
-        if (tableExists(db)) {
-            db.execSQL("DROP TABLE " + TABLE)
+        if (!tableExists(db)) {
+            //db.execSQL("DROP TABLE " + TABLE)
 
             val contentValues = ContentValues()
             contentValues.put(DatabaseReaderWorkouts.ERSTELLER, "auto")
