@@ -50,6 +50,7 @@
                 android:layout_marginTop="15dp"
                 android:textColor="@color/green"
                 android:textSize="20sp"
+                android:text="BMI-Klasse"
                 android:textStyle="bold" />
 
             <TextView
@@ -59,6 +60,7 @@
                 android:layout_marginTop="8dp"
                 android:textColor="@android:color/white"
                 android:textSize="50sp"
+                android:text="Dein BMI"
                 android:textStyle="bold" />
 
             <TextView
@@ -102,6 +104,7 @@
                     android:layout_marginStart="5dp"
                     android:textColor="@android:color/white"
                     android:textSize="25sp"
+                    android:text="20"
                     android:textStyle="bold" />
 
             </LinearLayout>

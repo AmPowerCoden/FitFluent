@@ -28,7 +28,7 @@
     <fragment
         android:id="@+id/foodFragment"
         android:name="com.example.fitfluent.ui.food.FoodFragment"
-        android:label="Calorien-Tracker"
+        android:label="Kalorien-Tracker"
         tools:layout="@layout/fragment_food" />
     <fragment
         android:id="@+id/exerciseFragment"

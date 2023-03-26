@@ -58,7 +58,6 @@ class BmiFragment() : Fragment() {
 
         // Get the logged in user
         var logged_user = (activity as MainActivity).getLoggedUser()
-
         viewModel.getData(logged_user)
 
         // Set the data in the UI
@@ -142,7 +141,6 @@ class BmiFragment() : Fragment() {
                     val ht = progress.toString() + resources.getString(R.string.unit_cm)
                     binding.heightTxt.text = ht
                     viewModel._height = progress
-                    //height = progress.toFloat() / 100
                 }
 
                 override fun onStartTrackingTouch(seekBar: SeekBar) {}
@@ -175,7 +173,6 @@ class BmiFragment() : Fragment() {
 
             // Navigate to the BMI result fragment with the calculated BMI and user age
             //findNavController().navigate(R.id.bmiResultFragment)
-            //val action = BmiFragmentDirections.actionBmiFragmentToBmiResultFragment(viewModel.calculate_bmi(), viewModel._age)
             val action = BmiFragmentDirections.actionBmiFragmentToBmiResultFragment(viewModel.calculate_bmi(), viewModel._age.toString())
 
             // Get the logged in user and save their updated data to the database

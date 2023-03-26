@@ -1,5 +1,7 @@
 package com.example.fitfluent.ui.bmi
 
+import android.annotation.SuppressLint
+import android.graphics.Color.parseColor
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -48,18 +50,20 @@ class BmiResultFragment : Fragment() {
 
     // This method is called after the view is created.
     // It sets up the UI elements for the fragment and handles their interactions.
+    @SuppressLint("ResourceAsColor")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
 
         binding.apply{
             // Set the BMI result text and age text based on the arguments passed to the fragment.
-            yourBmi.text = "${args.bmi.toString() + resources.getString(R.string.unit_kgm2)} "
+            yourBmi.text = "${args.bmi.toString() + " " + resources.getString(R.string.unit_kgm2)} "
             ageTxt.text = args.age
 
             // Check the BMI result and age to determine the BMI category and set the category text.
             var result = Calculation.checkAdult(args.age.toInt(), args.bmi)
             condition.text = "${result}"
+
 
 
             // Set the click listener for the "Recalculate" button.
