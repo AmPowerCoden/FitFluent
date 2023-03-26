@@ -23,7 +23,7 @@ class DatabaseReaderExercises (context: Context) : SQLiteOpenHelper(context, Dat
 
     // Create the database table if it does not exist
     override fun onCreate(p0: SQLiteDatabase?) {
-        if(!tableExists(p0)){
+        /*if(!tableExists(p0)){
             val createTable = ("CREATE TABLE " + DatabaseReaderExercises.TABLE + "(" + DatabaseReaderExercises.NAME + " TEXT, " + DatabaseReaderExercises.DESCRIPTION + " TEXT, " + DatabaseReaderExercises.MATERIAL + " TEXT, " + DatabaseReaderExercises.IMAGE + " TEXT, " + DatabaseReaderExercises.VIDEO + " TEXT)")
             //p0?.execSQL("DROP TABLE " + TABLE)
             p0?.execSQL(createTable)
@@ -37,7 +37,7 @@ class DatabaseReaderExercises (context: Context) : SQLiteOpenHelper(context, Dat
             contentValues.put(DatabaseReaderExercises.VIDEO, "video.de")
 
             val success = p0?.insert(DatabaseReaderExercises.TABLE, null, contentValues)
-        }
+        }*/
     }
 
     // Upgrade the database table if the version has changed
@@ -77,7 +77,7 @@ class DatabaseReaderExercises (context: Context) : SQLiteOpenHelper(context, Dat
 
         // Insert the exercise into the database and return the success indicator
         val success = db.insert(DatabaseReaderExercises.TABLE, null, contentValues)
-        db.close()
+        //db.close()
         return success
     }
 
