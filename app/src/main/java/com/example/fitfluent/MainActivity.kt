@@ -132,7 +132,7 @@ class MainActivity : AppCompatActivity() {
     {
         // Create a new instance of the DatabaseReaderExercises class
         val DatabaseReaderExercises = DatabaseReaderExercises(this)
-
+        //DatabaseReaderExercises.fromExcelToDb()
         // Call the getExercises method of the DatabaseReaderExercises object
         return DatabaseReaderExercises.getExercises()
     }
